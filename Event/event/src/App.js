@@ -2,6 +2,7 @@
 import Dashboard from "./components/dashboard/dashboard"
 // import { Route, Link, Routes, BrowserRouter as Router } from 'react-router-dom'
 import Login from "./components/login/login"
+import Forms from "./components/forms/forms"
 import { useState } from "react";
 function App() {
 
@@ -31,7 +32,8 @@ function App() {
 
   return (
     // <Login/>
-    <Dashboard/>
+    //<Dashboard/>
+    <Forms/>
     // <Router>
     //   <Routes>
     //     <Route path="/" element={<Dashboard blogs={ blogs } />} />
