@@ -5,15 +5,15 @@ import Login from "./components/login/login"
 import { useState } from "react";
 function App() {
 
-  const [blogs, setBlog] = useState([{
-    id:1,
-    title:"First Blog",
-    desription:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-    src:"https://cwexplorationphotography.com/wp-content/uploads/2013/11/10896225_528254790650735_6470305242078852429_o.jpg",
-    author:"Test",
-    authorPic:"https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png",
-    time:"9 mins"
-  }])
+  // const [blogs, setBlog] = useState([{
+  //   id:1,
+  //   title:"First Blog",
+  //   desription:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+  //   src:"https://cwexplorationphotography.com/wp-content/uploads/2013/11/10896225_528254790650735_6470305242078852429_o.jpg",
+  //   author:"Test",
+  //   authorPic:"https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png",
+  //   time:"9 mins"
+  // }])
 
 
   //  return (
@@ -32,6 +32,7 @@ function App() {
   return (
     // <Login/>
     <Dashboard/>
+    // <Forms/>
     // <Router>
     //   <Routes>
     //     <Route path="/" element={<Dashboard blogs={ blogs } />} />
