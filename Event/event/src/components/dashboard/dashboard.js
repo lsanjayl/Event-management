@@ -1,6 +1,12 @@
 import React from "react"
 const dashboard=()=>{
     return <div>
+        <navbar>
+            <h2>
+                Event manager
+            </h2>
+        </navbar>
+        <button>Download report</button>
     <table>
         <thead>
           <tr>
