@@ -26,7 +26,7 @@ const createUser=()=>{
     Duration,  
   }).then((response)=>{
     setList([...list,{Title,Theme,Date,Duration}])
-  })
+})
 }
 
   return (
