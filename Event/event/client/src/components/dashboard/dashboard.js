@@ -1,5 +1,15 @@
 import React from "react"
-const dashboard=()=>{
+import { useUserAuth } from "../../services/authservice";
+const Dashboard=()=>{
+    const {user,logOut}=useUserAuth()
+    const handleLogout= async ()=>{
+        try{
+            await logOut();
+        }
+        catch(e){
+            console.log(e.message);
+        }
+    }
     const content=[{
         ActivityDetails:{
             Title:"Seminar",
@@ -29,12 +39,19 @@ const dashboard=()=>{
         }
     }]
     return <div>
-        <navbar>
+        <navbar style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
             <h2>
-                Event manager
+                Sairam Clubs and Cells
             </h2>
+            <h3>
+                {user&&user.email}
+            </h3>
         </navbar>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
         <button>Download report</button>
+        <button onClick={handleLogout}>Log out</button>
+        </div>
+        
     <table class= "table table-stripped">
         <thead>
           <tr>
@@ -102,4 +119,4 @@ const dashboard=()=>{
     </table>
     </div>
 }
-export default dashboard;
+export default Dashboard;
