@@ -2,6 +2,7 @@ import React from "react"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../services/authservice";
+import { Navbar,Container} from 'react-bootstrap';
 const Login=()=>{
   const{login}=useUserAuth();
   const navigate=useNavigate();
@@ -28,6 +29,21 @@ const handleSubmit=async (e)=>{
 }
 
     return(
+      <div>
+        <Navbar bg="dark" variant="dark">
+         <Container style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
+         <Navbar.Brand href="#home">
+        <img
+        src="https://www.shamsaalam.com/wp-content/uploads/2019/10/Sri-Sairam-college.png"
+        width="160"
+        height="60"
+        className="d-inline-block align-top"
+        alt="logo"
+        />
+        </Navbar.Brand>
+         <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
+        </Container>
+        </Navbar>
       <div style={{display:'flex',justifyContent:'center'}}>
       <form style={{width:400,height:600,display:'flex',flexDirection:'column',justifyContent:'center'}} onSubmit={handleSubmit}>
   <div class="row mb-3">
@@ -46,6 +62,7 @@ const handleSubmit=async (e)=>{
 </form>
 
 </div> 
+</div>
     )
 }
 export default Login;

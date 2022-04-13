@@ -1,8 +1,9 @@
 import React from "react"
-import{useState} from "react"
+import{useState,useEffect} from "react"
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
-import {Button ,Modal,FloatingLabel,Form,Container,Row,Col} from "react-bootstrap"
+
+import {Button ,Modal,FloatingLabel,Form,Container,Row,Col,FormLabel} from "react-bootstrap"
 import {db} from "../../services/auth"
 function MyVerticallyCenteredModal(props) {
   
@@ -101,7 +102,23 @@ function MyVerticallyCenteredModal(props) {
         </FloatingLabel>
         </Form.Group>
         </Col>
+        </Row>
+        <Row>
+        <Col>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+        <FormLabel>Report files</FormLabel>
+        <Form.Control name="reports" type="file" />
+        </Form.Group>
+        </Col>
         
+        </Row>
+        <Row>
+        <Col>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+        <FormLabel>Images</FormLabel>
+        <Form.Control name="images" type="file"/>
+        </Form.Group>
+        </Col>
         </Row>
         
 
@@ -129,6 +146,7 @@ function MyVerticallyCenteredModal(props) {
       try {
         const docRef = await EventDataService.addEvent(values,clubName);
         console.log("Document written with ID: ", docRef.id);
+
       } catch (e) {
         console.error("Error adding document: ", e);
       }
