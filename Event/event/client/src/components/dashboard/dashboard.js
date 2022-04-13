@@ -1,6 +1,29 @@
 import React from "react"
+import {useEffect,useState} from "react"
+import { Button,Navbar,Nav,Container, Table } from 'react-bootstrap';
+import EventModal from "./Modal";
+import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
 const Dashboard=()=>{
+
+        const [events, setEvents] = useState([]);
+        useEffect(() => {
+          getEvents();
+        }, []);
+      
+        const getEvents = async () => {
+          const data = await EventDataService.getAllEvent(club);
+          setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        };
+        const deleteHandler = async (id) => {
+            await EventDataService.deleteEvent(id,club);
+            getEvents();
+          };
+    
+
+
+
+
     const {user,logOut}=useUserAuth()
     const handleLogout= async ()=>{
         try{
@@ -10,51 +33,47 @@ const Dashboard=()=>{
             console.log(e.message);
         }
     }
-    const content=[{
-        ActivityDetails:{
-            Title:"Seminar",
-            Theme:"Maths",
-            Date:"02/09/2022",
-            Duration:"1Hour"
-        },
-        VenueDetails:{
-            Venue:"offline",
-            Venuecity:"chennai",
-            VenueState:"Tamilnadu"
-        },
-        Moreinfo:{
-            Noofstudentsparticipated:"50",
-            Nooffacultiesparticipated:"5",
-            URL:"www.sec.in",
-            Remarks:"lorem*5",
-            Session:"Online",
-            Program:"Workshop",
-        },
-        Attachements:{
-            Report:"Event report",
-            Images:"Images"
-        },
-        Edit:{
-            
-        }
-    }]
+    //Club name display
+    // const clubName="Mapps"
+    const club=user.email.slice(3,-21)
+    const clubName=club[0].toUpperCase()+club.substring(1);
     return <div>
-        <navbar style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-            <h2>
-                Sairam Clubs and Cells
-            </h2>
-            <h3>
-                {user&&user.email}
-            </h3>
-        </navbar>
-        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-        <button>Download report</button>
-        <button onClick={handleLogout}>Log out</button>
+
+
+        <Navbar bg="dark" variant="dark">
+         <Container style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
+         <Navbar.Brand href="/">Sairam Clubs and Cells</Navbar.Brand>
+        <Nav style={{display:'flex',alignItems:'center'}}>
+        <Navbar.Brand >{user&&clubName}club</Navbar.Brand>
+        <Nav.Link> <Button variant="primary" onClick={handleLogout}>
+          Logout
+        </Button>
+        </Nav.Link>
+        </Nav>
+        </Container>
+        </Navbar>
+
+
+    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
+           <EventModal />
+           <Button variant="primary" onClick={handleLogout}style={{margin:"10px"}}>
+           Download report
+           </Button>
         </div>
+
+       
+
+    </div>
         
-    <table class= "table table-stripped">
+
+
+    <div style={{padding:"10px"}}>
+    <Table striped bordered hover variant="dark">
         <thead>
           <tr>
+          <th>Serial</th> 
           <th>Activity Details</th> 
           <th>Venue Details</th> 
           <th>More info</th> 
@@ -63,60 +82,53 @@ const Dashboard=()=>{
           </tr>
         </thead>
         <tbody>
-            <tr>
+            {events.map((doc,index)=>{
+                return(
+            <tr key={doc.id}>
+                <td>
+                    {index+1}
+                </td>
             <td>
-                <td>Title:</td>
+                <td>Title:{doc.title}</td>
                 <br></br>
-                <td>Theme:</td>
+                <td>Theme:{doc.theme}</td>
                 <br></br>
-                <td>Activity:</td>
-                <br></br>
-                <td>Duration:</td>
+                <td>Duration:{doc.duration}</td>
             </td>
             <td>
-                <td>Venue:</td>
-                <br></br>
-                <td>Venue city:</td>
-                <br></br>
-                <td>Venue State:</td>
-            
+                <td>Venue:{doc.venue}</td>
             </td>
             <td>
-                <td>Venue:</td>
+                <td>No.of.students participated:{doc.noofstud}</td>
                 <br></br>
-                <td>Venue city:</td>
+                <td>No.of.faculties participated{doc.nooffaculty}</td>
                 <br></br>
-                <td>Venue State:</td>
-            </td>
-            <td>
-                <td>No.of.students participated:</td>
+                <td>URL{doc.url}</td>
                 <br></br>
-                <td>No.of.faculties participated</td>
-                <br></br>
-                <td>URL</td>
-                <br></br>
-                <td>Remarks</td>
-                <br></br>
-                <td>Session</td>
-                <br></br>
-                <td>Program</td>
+                <td>Remarks{doc.remarks}</td>
             </td>
             <td>
                 <label>Upload files</label>
                 <br></br>
-                <button>Report</button>
+                <Button variant="primary"style={{margin:"10px"}}>Report</Button>
                 <br></br>
-                <button>Images</button>
+                <Button variant="primary"style={{margin:"10px"}}>Images</Button>
             </td>
             <td>
                 
-                <button>Edit</button>
+                <Button variant="primary"style={{margin:"10px"}}>Edit</Button>
                 <br></br>
-                <button>Delete</button>
+                <Button onClick={(e) => deleteHandler(doc.id)}  variant="primary"style={{margin:"10px"}}>Delete</Button>
             </td>
             </tr>
+                )
+             })}
+            
         </tbody>
-    </table>
+    </Table>
+    </div>
     </div>
 }
+
+
 export default Dashboard;
