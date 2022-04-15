@@ -4,6 +4,7 @@ import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
 
 import {Button ,Modal,FloatingLabel,Form,Container,Row,Col,FormLabel} from "react-bootstrap"
+import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 function MyVerticallyCenteredModal(props) {
   
   const handleChange=e=>{
@@ -137,14 +138,36 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
-  function EventModal() {
+  function EventEdit({id}) {
+    
+    
     const [modalShow, setModalShow] =useState(false);
     const {user}=useUserAuth()
     const clubName=user.email.slice(3,-21)
+    const [values,setValues]=useState({
+        title:"",
+        theme:"",
+        venue:"",
+        mode:"",
+        date:"",
+        duration:"",
+        nooffaculty:"",
+        noofstud:"",
+        url:"",
+        remarks:""
+      })
+    const handleEdit=async()=>{
+        setModalShow(true);
+        const docSnap=await  EventDataService.getEvent(id,clubName);
+        setValues(docSnap.data());
+
+    }
+    
+        
+    
     const onSubmit=async()=>{
       try {
-        const docRef = await EventDataService.addEvent(values,clubName);
-        console.log("Document written with ID: ", docRef.id);
+        const docRef = await EventDataService.updateEvent(id,values,clubName);
 
       } catch (e) {
         console.error("Error adding document: ", e);
@@ -164,23 +187,12 @@ function MyVerticallyCenteredModal(props) {
         remarks:""
       })
     }
-    const [values,setValues]=useState({
-      title:"",
-      theme:"",
-      venue:"",
-      mode:"",
-      date:"",
-      duration:"",
-      nooffaculty:"",
-      noofstud:"",
-      url:"",
-      remarks:""
-    })
+    
   
     return (
       <>
-        <Button variant="primary" onClick={() => setModalShow(true)}style={{margin:"10px"}}>
-          Add Event
+        <Button variant="primary" onClick={handleEdit}style={{margin:"10px"}}>
+          Edit
         </Button>
   
         <MyVerticallyCenteredModal
@@ -194,4 +206,4 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
- export default EventModal;
+ export default EventEdit;

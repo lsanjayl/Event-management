@@ -2,6 +2,7 @@ import React from "react"
 import {useEffect,useState} from "react"
 import { Button,Navbar,Nav,Container, Table } from 'react-bootstrap';
 import EventModal from "./Modal";
+import EventEdit from "./Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
 const Dashboard=()=>{
@@ -19,11 +20,15 @@ const Dashboard=()=>{
             await EventDataService.deleteEvent(id,club);
             getEvents();
           };
+    //=====================Edit section=========================//
+    
     
 
 
 
 
+
+    //=========================================================//
     const {user,logOut}=useUserAuth()
     const handleLogout= async ()=>{
         try{
@@ -133,7 +138,7 @@ const Dashboard=()=>{
             </td>
             <td>
                 
-                <Button variant="primary"style={{margin:"10px"}}>Edit</Button>
+                <EventEdit id={doc.id}/>
                 <br></br>
                 <Button onClick={(e) => deleteHandler(doc.id)}  variant="primary"style={{margin:"10px"}}>Delete</Button>
             </td>
