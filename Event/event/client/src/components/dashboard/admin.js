@@ -5,14 +5,29 @@ import EventModal from "./Modal";
 import EventEdit from "./Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
-const Dashboard=()=>{
+const Admin=()=>{
+        const [selected,setSelected]=useState(true)
         const [events, setEvents] = useState([]);
-        
+        const [choice,setChoice]=useState("");
         const {user,logOut}=useUserAuth()
          //=========club name display=============/
         // const clubName="Mapps"
         const club=user.email.slice(3,-17)
         const clubName=club[0].toUpperCase()+club.substring(1);
+
+        if(club!=="admin"){
+            setChoice(club);
+        }
+        
+
+        //=============Admin-select================/
+        
+        const handleAdmin=()=>{
+            console.log(choice)
+            setChoice(choice)
+            setSelected(false);
+            getEvents();
+        }
     
         //=============list events================/
     
@@ -21,13 +36,13 @@ const Dashboard=()=>{
         }, []);
       
         const getEvents = async () => {
-          const data = await EventDataService.getAllEvent(club);
+          const data = await EventDataService.getAllEvent(choice);
           setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
 
         //==============Deletehandle==============/
         const deleteHandler = async (id) => {
-            await EventDataService.deleteEvent(id,club);
+            await EventDataService.deleteEvent(id,choice);
             getEvents();
           };
 
@@ -60,8 +75,8 @@ const Dashboard=()=>{
          <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
          
         <Nav style={{display:'flex',alignItems:'center'}}>
-        <Navbar.Brand >{user&&clubName}club</Navbar.Brand>
         
+        <Navbar.Brand >{user&&clubName}</Navbar.Brand>
         <Nav.Link> <Button variant="outline-light" onClick={handleLogout}>
           Logout
         </Button>
@@ -76,13 +91,27 @@ const Dashboard=()=>{
 
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
            
-           <Button variant="primary" style={{margin:"10px"}}>
+           <Button variant="primary" onClick={handleLogout}style={{margin:"10px"}}>
            Download report
            </Button>
 
 
            <div style={{display:"flex",alignItems:"center"}}>
-           <EventModal choice={club} />
+            {club==="admin"&& <>
+            <Form.Select variant="primary" value={choice} onChange={(e)=>setChoice(e.target.value)}style={{width:"150px"}}>
+            <option value="">Choose</option>
+            <option value="mapps" >Mapps</option>
+            <option value="maths">Maths</option>
+            <option value="photography">photography</option>
+            </Form.Select>
+
+            <Button variant="primary"  style={{margin:"10px"}} onClick={handleAdmin}> Search </Button>
+            </>
+            }  
+
+            
+
+           <EventModal choice={choice} />
            <Button variant="primary"  style={{margin:"10px",width:"110px"}} onClick={getEvents} >
             Refresh List
             </Button>
@@ -148,7 +177,7 @@ const Dashboard=()=>{
             </td>
             <td>
                 
-                <EventEdit id={doc.id} choice={club}/>
+                <EventEdit id={doc.id} choice={choice}/>
                 <br></br>
                 <Button onClick={(e) => deleteHandler(doc.id)}  variant="outline-danger"style={{margin:"10px"}}>Delete</Button>
             </td>
@@ -157,12 +186,18 @@ const Dashboard=()=>{
                 )
              })}
             
+            
         </tbody>
     </Table>
+    {selected&&
+                <div style={{width:"100%",display:"flex",justifyContent:"space-around",backgroundColor:"#212529",color:"white"}}>
+                    <h3>Select a club </h3>
+                    </div>
+            }
     </div>
     </div>
 }
 
 
-export default Dashboard;
+export default Admin;
 

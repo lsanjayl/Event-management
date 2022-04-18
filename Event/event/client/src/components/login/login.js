@@ -18,7 +18,13 @@ const handleSubmit=async (e)=>{
   setError("");
   try{
     await login(email,password);
-    navigate("/dashboard")
+    const club=email.slice(3,-17)
+    if(club==="admin"){
+      navigate("/admin")
+    }else{
+      navigate("/dashboard")
+    }
+    
     reset();
   }
   catch(e){

@@ -138,12 +138,12 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
-  function EventEdit({id}) {
+  function EventEdit({id,choice}) {
     
     
     const [modalShow, setModalShow] =useState(false);
-    const {user}=useUserAuth()
-    const clubName=user.email.slice(3,-21)
+    // const {user}=useUserAuth()
+    // const clubName=user.email.slice(3,-17)
     const [values,setValues]=useState({
         title:"",
         theme:"",
@@ -158,7 +158,7 @@ function MyVerticallyCenteredModal(props) {
       })
     const handleEdit=async()=>{
         setModalShow(true);
-        const docSnap=await  EventDataService.getEvent(id,clubName);
+        const docSnap=await  EventDataService.getEvent(id,choice);
         setValues(docSnap.data());
 
     }
@@ -167,7 +167,7 @@ function MyVerticallyCenteredModal(props) {
     
     const onSubmit=async()=>{
       try {
-        const docRef = await EventDataService.updateEvent(id,values,clubName);
+        const docRef = await EventDataService.updateEvent(id,values,choice);
 
       } catch (e) {
         console.error("Error adding document: ", e);
@@ -191,7 +191,7 @@ function MyVerticallyCenteredModal(props) {
   
     return (
       <>
-        <Button variant="primary" onClick={handleEdit}style={{margin:"10px"}}>
+        <Button variant="outline-light" onClick={handleEdit}style={{margin:"10px"}}>
           Edit
         </Button>
   

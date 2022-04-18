@@ -137,10 +137,9 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
-  function EventModal() {
+  function EventModal({choice}) {
     const [modalShow, setModalShow] =useState(false);
-    const {user}=useUserAuth()
-    const clubName=user.email.slice(3,-21)
+    const clubName=choice
     const onSubmit=async()=>{
       try {
         const docRef = await EventDataService.addEvent(values,clubName);
@@ -179,7 +178,7 @@ function MyVerticallyCenteredModal(props) {
   
     return (
       <>
-        <Button variant="primary" onClick={() => setModalShow(true)}style={{margin:"10px"}}>
+        <Button variant="primary" onClick={() => setModalShow(true)}style={{margin:"10px",width:"110px"}}>
           Add Event
         </Button>
   

@@ -1,5 +1,6 @@
 
 import Dashboard from "./components/dashboard/dashboard"
+import Admin from "./components/dashboard/admin"
 import { Route, Routes } from 'react-router-dom'
 import Login from "./components/login/login"
 import ProtectedRoute from './services/ProtectedRoute'
@@ -14,6 +15,13 @@ function App() {
          element={
         <ProtectedRoute>
           <Dashboard/>
+        </ProtectedRoute> 
+        }
+        />
+        <Route path="/admin"
+         element={
+        <ProtectedRoute>
+          <Admin/>
         </ProtectedRoute> 
         }
         />
