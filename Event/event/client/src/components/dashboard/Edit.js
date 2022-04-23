@@ -103,7 +103,7 @@ function MyVerticallyCenteredModal(props) {
         </Form.Group>
         </Col>
         </Row>
-        <Row>
+        {/* <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
         <FormLabel>Report files</FormLabel>
@@ -119,7 +119,7 @@ function MyVerticallyCenteredModal(props) {
         <Form.Control name="images" type="file"/>
         </Form.Group>
         </Col>
-        </Row>
+        </Row> */}
         
 
 

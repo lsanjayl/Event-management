@@ -1,13 +1,15 @@
 import React from "react"
 import {useEffect,useState} from "react"
-import { Button,Navbar,Nav,Container, Table,Form } from 'react-bootstrap';
+import Head from "./Navbar";
+import { useNavigate } from "react-router-dom";
+import { Button, Table } from 'react-bootstrap';
 import EventModal from "./Modal";
 import EventEdit from "./Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
 const Dashboard=()=>{
         const [events, setEvents] = useState([]);
-        
+        const navigate=useNavigate();
         const {user,logOut}=useUserAuth()
          //=========club name display=============/
         // const clubName="Mapps"
@@ -44,31 +46,7 @@ const Dashboard=()=>{
     
 
     return <div>
-
-
-        <Navbar bg="dark" variant="dark">
-         <Container style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
-         <Navbar.Brand href="#home">
-        <img
-        src="https://www.shamsaalam.com/wp-content/uploads/2019/10/Sri-Sairam-college.png"
-        width="160"
-        height="60"
-        className="d-inline-block align-top"
-        alt="logo"
-        />
-        </Navbar.Brand>
-         <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
-         
-        <Nav style={{display:'flex',alignItems:'center'}}>
-        <Navbar.Brand >{user&&clubName}club</Navbar.Brand>
-        
-        <Nav.Link> <Button variant="outline-light" onClick={handleLogout}>
-          Logout
-        </Button>
-        </Nav.Link>
-        </Nav>
-        </Container>
-        </Navbar>
+        <Head/>
 
 
         
@@ -76,7 +54,7 @@ const Dashboard=()=>{
 
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
            
-           <Button variant="primary" style={{margin:"10px"}}>
+           <Button variant="primary" style={{margin:"10px"}} onClick={()=>navigate("/download")}>
            Download report
            </Button>
 
@@ -130,21 +108,26 @@ const Dashboard=()=>{
                 <br></br>
                 <td>No.of.faculties participated:{doc.nooffaculty}</td>
                 <br></br>
+                <td>URL:{doc.url}</td>
+                
             </td>
             <td>
                 
-                <td>URL:{doc.url}</td>
-                <br></br>
+                
                 <td>Remarks:{doc.remarks}</td>
                 <br></br>
                 <td>Venue:{doc.venue}</td>
+                <br></br>
+                <td>Date:{doc.date}</td>
             </td>
             <td>
                 <label>Uploaded files</label>
                 <br></br>
-                <Button variant="outline-primary"style={{margin:"10px"}}>Report</Button>
                 <br></br>
-                <Button variant="outline-primary"style={{margin:"10px"}}>Images</Button>
+                <a href={doc.report}target="_blank"style={{textDecoration:"none",color:"white",background:"#0d6efd",borderRadius:"4px",margin:"10px",padding:"5px 7px"}}>Report</a>
+                <br></br>
+                <br></br>
+                <a href={doc.image} target="_blank" style={{textDecoration:"none",color:"white",background:"#0d6efd",borderRadius:"4px",margin:"10px",padding:"5px 7px"}}>Images</a>
             </td>
             <td>
                 

@@ -1,7 +1,8 @@
 import React from "react"
 import{useState} from "react"
 import EventDataService from "../../services/event.services"
-import { useUserAuth } from "../../services/authservice";
+import {storage} from "../../services/auth.js"
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import {Button ,Modal,FloatingLabel,Form,Container,Row,Col,FormLabel} from "react-bootstrap"
 function MyVerticallyCenteredModal(props) {
@@ -106,7 +107,8 @@ function MyVerticallyCenteredModal(props) {
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
         <FormLabel>Report files</FormLabel>
-        <Form.Control name="reports" type="file" />
+        <Form.Control name="reports" type="file" onChange={(e)=>props.setReport(e.target.files[0])}/>
+        <Button onClick={props.uploadrep}>Upload</Button>
         </Form.Group>
         </Col>
         
@@ -115,7 +117,8 @@ function MyVerticallyCenteredModal(props) {
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
         <FormLabel>Images</FormLabel>
-        <Form.Control name="images" type="file"/>
+        <Form.Control name="images" type="file"onChange={(e)=>props.setImage(e.target.files[0])}/>
+        <Button onClick={props.upload}>Upload</Button>
         </Form.Group>
         </Col>
         </Row>
@@ -139,7 +142,94 @@ function MyVerticallyCenteredModal(props) {
   
   function EventModal({choice}) {
     const [modalShow, setModalShow] =useState(false);
+    const [image,setImage]=useState("");
+    const [report,setReport]=useState("");
+    const [imageUrl,setiUrl]=useState("")
+    const [reportUrl,setrUrl]=useState("")
     const clubName=choice
+    const upload = ()=>{
+      if(image == null)
+        return;
+        const metadata = {
+          contentType: 'image/jpeg'
+        };
+        const storageRef = ref(storage, 'images/' + image.name);
+        const uploadTask = uploadBytesResumable(storageRef, image, metadata);
+        uploadTask.on('state_changed',
+  (snapshot) => {
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+    }
+  }, 
+  (error) => {
+    switch (error.code) {
+      case 'storage/unauthorized':
+        break;
+      case 'storage/canceled':
+        break;
+      case 'storage/unknown':
+        break;
+    }
+  }, 
+  () => {
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log(downloadURL)
+      setiUrl(downloadURL)
+      console.log(imageUrl)
+    });
+  }
+);
+    }
+    const uploadrep = ()=>{
+      if(image == null)
+        return;
+        const metadata = {
+          contentType: 'image/jpeg'
+        };
+        const storageRef = ref(storage, 'images/' + report.name);
+        const uploadTask = uploadBytesResumable(storageRef, report, metadata);
+        uploadTask.on('state_changed',
+  (snapshot) => {
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+    }
+  }, 
+  (error) => {
+    switch (error.code) {
+      case 'storage/unauthorized':
+        break;
+      case 'storage/canceled':
+        break;
+      case 'storage/unknown':
+        break;
+    }
+  }, 
+  () => {
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log(downloadURL)
+      setrUrl(downloadURL)
+      console.log(reportUrl)
+
+    });
+  }
+);
+    }
     const onSubmit=async()=>{
       try {
         const docRef = await EventDataService.addEvent(values,clubName);
@@ -160,7 +250,10 @@ function MyVerticallyCenteredModal(props) {
         nooffaculty:"",
         noofstud:"",
         url:"",
-        remarks:""
+        remarks:"",
+        image:imageUrl,
+        report:reportUrl
+        
       })
     }
     const [values,setValues]=useState({
@@ -173,7 +266,10 @@ function MyVerticallyCenteredModal(props) {
       nooffaculty:"",
       noofstud:"",
       url:"",
-      remarks:""
+      remarks:"",
+      image:"",
+      report:""
+      
     })
   
     return (
@@ -184,7 +280,11 @@ function MyVerticallyCenteredModal(props) {
   
         <MyVerticallyCenteredModal
           show={modalShow}
+          upload={upload}
+          uploadrep={uploadrep}
           values={values}
+          setReport={setReport}
+          setImage={setImage}
           setValues={setValues}
           onSubmit={onSubmit}
           onHide={() => setModalShow(false)}

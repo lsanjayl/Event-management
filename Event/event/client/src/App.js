@@ -1,5 +1,6 @@
 
 import Dashboard from "./components/dashboard/dashboard"
+import Example from "./components/dashboard/downloadbutton"
 import Admin from "./components/dashboard/admin"
 import { Route, Routes } from 'react-router-dom'
 import Login from "./components/login/login"
@@ -25,6 +26,7 @@ function App() {
         </ProtectedRoute> 
         }
         />
+        <Route path="/download" element={<ProtectedRoute><Example/></ProtectedRoute>}/>
       </Routes>
       </UserAuthContextProvider>
   );
