@@ -10,41 +10,22 @@ import { useUserAuth } from "../../services/authservice";
 const Dashboard=()=>{
         const [events, setEvents] = useState([]);
         const navigate=useNavigate();
-        const {user,logOut}=useUserAuth()
+        const {user}=useUserAuth()
          //=========club name display=============/
-        // const clubName="Mapps"
         const club=user.email.slice(3,-17)
-        const clubName=club[0].toUpperCase()+club.substring(1);
-    
         //=============list events================/
-    
         useEffect(() => {
           getEvents();
         }, []);
-      
         const getEvents = async () => {
           const data = await EventDataService.getAllEvent(club);
           setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
-
         //==============Deletehandle==============/
         const deleteHandler = async (id) => {
             await EventDataService.deleteEvent(id,club);
             getEvents();
           };
-
-        //==============Logout====================/
-        
-        const handleLogout= async ()=>{
-        try{
-            await logOut();
-        }
-        catch(e){
-            console.log(e.message);
-        }
-        }
-    
-
     return <div>
         <Head/>
 

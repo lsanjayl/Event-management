@@ -9,7 +9,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
   const [events, setEvents] = useState([]);
   const {user}=useUserAuth()
          //=========club name display=============/
-        // const clubName="Mapps"
         const club=user.email.slice(3,-17)
         const clubName=club[0].toUpperCase()+club.substring(1);
         useEffect(() => {
@@ -47,7 +46,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           <th>Activity Details</th> 
           <th>Participant Details</th> 
           <th>More info</th> 
-           
           </tr>
         </thead>
         <tbody>

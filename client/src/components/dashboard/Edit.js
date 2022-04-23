@@ -1,10 +1,7 @@
 import React from "react"
 import{useState} from "react"
 import EventDataService from "../../services/event.services"
-import { useUserAuth } from "../../services/authservice";
-
-import {Button ,Modal,FloatingLabel,Form,Container,Row,Col,FormLabel} from "react-bootstrap"
-import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
+import {Button ,Modal,FloatingLabel,Form,Container,Row,Col} from "react-bootstrap"
 function MyVerticallyCenteredModal(props) {
   
   const handleChange=e=>{
@@ -142,8 +139,6 @@ function MyVerticallyCenteredModal(props) {
     
     
     const [modalShow, setModalShow] =useState(false);
-    // const {user}=useUserAuth()
-    // const clubName=user.email.slice(3,-17)
     const [values,setValues]=useState({
         title:"",
         theme:"",

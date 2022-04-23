@@ -5,15 +5,15 @@ import EventModal from "./Modal";
 import EventEdit from "./Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
+import Head from "./Navbar"
 const Admin=()=>{
         const [selected,setSelected]=useState(true)
         const [events, setEvents] = useState([]);
         const [choice,setChoice]=useState("");
         const {user,logOut}=useUserAuth()
          //=========club name display=============/
-        // const clubName="Mapps"
+        
         const club=user.email.slice(3,-17)
-        const clubName=club[0].toUpperCase()+club.substring(1);
 
         if(club!=="admin"){
             setChoice(club);
@@ -30,16 +30,13 @@ const Admin=()=>{
         }
     
         //=============list events================/
-    
         useEffect(() => {
           getEvents();
         }, []);
-      
         const getEvents = async () => {
           const data = await EventDataService.getAllEvent(choice);
           setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
-
         //==============Deletehandle==============/
         const deleteHandler = async (id) => {
             await EventDataService.deleteEvent(id,choice);
@@ -59,36 +56,9 @@ const Admin=()=>{
     
 
     return <div>
-
-
-        <Navbar bg="dark" variant="dark">
-         <Container style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
-         <Navbar.Brand href="#home">
-        <img
-        src="https://www.shamsaalam.com/wp-content/uploads/2019/10/Sri-Sairam-college.png"
-        width="160"
-        height="60"
-        className="d-inline-block align-top"
-        alt="logo"
-        />
-        </Navbar.Brand>
-         <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
-         
-        <Nav style={{display:'flex',alignItems:'center'}}>
-        
-        <Navbar.Brand >{user&&clubName}</Navbar.Brand>
-        <Nav.Link> <Button variant="outline-light" onClick={handleLogout}>
-          Logout
-        </Button>
-        </Nav.Link>
-        </Nav>
-        </Container>
-        </Navbar>
-
-
-        
-        
-
+        {/* Navbar  */}
+        <Head/>
+        {/* Options for adding / downloadingreport / refreshing the list */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
            
            <Button variant="primary" onClick={handleLogout}style={{margin:"10px"}}>
@@ -127,6 +97,7 @@ const Admin=()=>{
     
         
 
+    {/* MainTable */}
 
     <div style={{padding:"10px"}}>
     <Table striped bordered hover variant="dark">

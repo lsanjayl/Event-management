@@ -4,6 +4,7 @@ const Head=()=>{
     const {logOut,user}=useUserAuth()
         const club=user.email.slice(3,-17)
         const clubName=club[0].toUpperCase()+club.substring(1);
+        let clubTag="club"
     const handleLogout= async ()=>{
         try{
             await logOut();
@@ -27,7 +28,7 @@ const Head=()=>{
          <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
          
         <Nav style={{display:'flex',alignItems:'center'}}>
-        <Navbar.Brand >{user&&clubName}club</Navbar.Brand>
+        <Navbar.Brand >{user&&clubName}</Navbar.Brand>
         
         <Nav.Link> <Button variant="outline-light" onClick={handleLogout}>
           Logout
