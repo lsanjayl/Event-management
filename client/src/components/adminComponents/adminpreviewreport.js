@@ -2,25 +2,35 @@ import React from 'react';
 import { useUserAuth } from "../../services/authservice";
 import {useEffect,useState} from "react"
 import { Navbar,Nav,Container } from 'react-bootstrap';
-import { Table } from 'react-bootstrap';
 import EventDataService from "../../services/event.services"
+import { Button,Table,Form } from 'react-bootstrap';
 export const ComponentToPrint = React.forwardRef((props, ref) => {
-  
+  const [choice,setChoice]=useState("")
   const [events, setEvents] = useState([]);
-  const {user}=useUserAuth()
+  const [selected,setSelected]=useState(true)
          //=========club name display=============/
-        const club=user.email.slice(3,-17)
-        const clubName=club[0].toUpperCase()+club.substring(1);
         useEffect(() => {
           getEvents();
         }, []);
-      
+        const handleAdmin=()=>{
+          console.log(choice)
+          setChoice(choice)
+          setSelected(false);
+          getEvents();
+      }
         const getEvents = async () => {
-          const data = await EventDataService.getAllEvent(club);
+          const data = await EventDataService.getAllEvent(choice);
           setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
     return (
       <div style={{margin:"0px 50px"}} ref={ref}>
+        <Form.Select variant="primary" value={choice} onChange={(e)=>setChoice(e.target.value)}style={{width:"150px"}}>
+           <option value="">Choose</option>
+           <option value="mapps" >Mapps</option>
+           <option value="maths">Maths</option>
+           <option value="photography">photography</option>
+        </Form.Select>
+        <Button variant="primary"  style={{margin:"10px"}} onClick={handleAdmin}> Search </Button>
         <Navbar bg="light" variant="dark">
          <Container style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
          <Navbar.Brand href="#home">
@@ -35,7 +45,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
          <Navbar.Brand  style={{color:"black"}}> Event Details</Navbar.Brand>
          
         <Nav style={{display:'flex',alignItems:'center'}}>
-        <Navbar.Brand style={{color:"black"}}>{user&&clubName}club</Navbar.Brand>
+        <Navbar.Brand style={{color:"black"}}>{choice}club</Navbar.Brand>
         </Nav>
         </Container>
         </Navbar>

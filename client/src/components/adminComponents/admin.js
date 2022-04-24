@@ -1,16 +1,18 @@
 import React from "react"
 import {useEffect,useState} from "react"
 import { Button,Table,Form } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 import EventModal from "../Forms/Modal";
 import EventEdit from "../Forms/Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
 import Head from "../Navbar/Navbar"
 const Admin=({choice,setChoice})=>{
+        const navigate=useNavigate();
         const [selected,setSelected]=useState(true)
         const [events, setEvents] = useState([]);
         
-        const {user,logOut}=useUserAuth()
+        const {user}=useUserAuth()
          //=========club name display=============/
         
         const club=user.email.slice(3,-17)
@@ -43,16 +45,6 @@ const Admin=({choice,setChoice})=>{
             getEvents();
           };
 
-        //==============Logout====================/
-        
-        const handleLogout= async ()=>{
-        try{
-            await logOut();
-        }
-        catch(e){
-            console.log(e.message);
-        }
-        }
     
 
     return <div>
@@ -61,7 +53,7 @@ const Admin=({choice,setChoice})=>{
         {/* Options for adding / downloadingreport / refreshing the list */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
            
-           <Button variant="primary" onClick={handleLogout}style={{margin:"10px"}}>
+           <Button variant="primary"style={{margin:"10px"}} onClick={()=>navigate("/admindownload")}>
            Download report
            </Button>
 

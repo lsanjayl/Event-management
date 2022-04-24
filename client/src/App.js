@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import Login from "./components/login/login"
 import ProtectedRoute from './services/ProtectedRoute'
 import { UserAuthContextProvider } from "./services/authservice";
+import Adminreport from "./components/adminComponents/adminreport"
 function App() {
   
   return (
@@ -26,7 +27,7 @@ function App() {
         </ProtectedRoute> 
         }
         />
-        <Route path="/admindownload"element={<ProtectedRoute><Example/></ProtectedRoute>}/>
+        <Route path="/admindownload"element={<ProtectedRoute><Adminreport/></ProtectedRoute>}/>
         <Route path="/download" element={<ProtectedRoute><Example/></ProtectedRoute>}/>
       </Routes>
       </UserAuthContextProvider>
