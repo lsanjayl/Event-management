@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUserAuth } from "../../services/authservice";
 import {useEffect,useState} from "react"
-import { Button,Navbar,Nav,Container } from 'react-bootstrap';
+import { Navbar,Nav,Container } from 'react-bootstrap';
 import { Table } from 'react-bootstrap';
 import EventDataService from "../../services/event.services"
 export const ComponentToPrint = React.forwardRef((props, ref) => {

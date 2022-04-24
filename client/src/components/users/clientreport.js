@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import Head from "./Navbar"
+import Head from "../Navbar/Navbar"
 import { useReactToPrint } from 'react-to-print';
 import { Button} from 'react-bootstrap';
-import { ComponentToPrint } from './download';
+import { ComponentToPrint } from './clientpreviewreport';
 
 const Example = () => {
  

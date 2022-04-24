@@ -1,10 +1,10 @@
 import React from "react"
 import {useEffect,useState} from "react"
-import Head from "./Navbar";
+import Head from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { Button, Table } from 'react-bootstrap';
-import EventModal from "./Modal";
-import EventEdit from "./Edit";
+import EventModal from "../Forms/Modal";
+import EventEdit from "../Forms/Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
 const Dashboard=()=>{

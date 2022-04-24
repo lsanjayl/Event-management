@@ -1,15 +1,15 @@
 import React from "react"
 import {useEffect,useState} from "react"
-import { Button,Navbar,Nav,Container, Table,Form } from 'react-bootstrap';
-import EventModal from "./Modal";
-import EventEdit from "./Edit";
+import { Button,Table,Form } from 'react-bootstrap';
+import EventModal from "../Forms/Modal";
+import EventEdit from "../Forms/Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
-import Head from "./Navbar"
-const Admin=()=>{
+import Head from "../Navbar/Navbar"
+const Admin=({choice,setChoice})=>{
         const [selected,setSelected]=useState(true)
         const [events, setEvents] = useState([]);
-        const [choice,setChoice]=useState("");
+        
         const {user,logOut}=useUserAuth()
          //=========club name display=============/
         
@@ -170,5 +170,5 @@ const Admin=()=>{
 }
 
 
-export default Admin;
+export default Admin  
 
