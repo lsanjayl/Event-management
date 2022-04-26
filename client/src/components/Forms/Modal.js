@@ -117,7 +117,7 @@ function MyVerticallyCenteredModal(props) {
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
         <FormLabel>Images</FormLabel>
-        <Form.Control name="images" type="file"onChange={(e)=>props.setImage(e.target.files[0])}/>
+        <Form.Control name="images" type="file"onChange={(e)=>props.setImage(e.target.files[0])} />
         <Button onClick={props.upload}>Upload</Button>
         </Form.Group>
         </Col>
@@ -183,8 +183,10 @@ function MyVerticallyCenteredModal(props) {
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       console.log(downloadURL)
       setiUrl(downloadURL)
-      console.log(imageUrl)
+      setValues(prevUser => ({...prevUser,image:imageUrl}));
+      console.log(values)
     });
+    
   }
 );
     }
@@ -192,7 +194,7 @@ function MyVerticallyCenteredModal(props) {
       if(image == null)
         return;
         const metadata = {
-          contentType: 'image/jpeg'
+          contentType: 'image/pdf'
         };
         const storageRef = ref(storage, 'images/' + report.name);
         const uploadTask = uploadBytesResumable(storageRef, report, metadata);
@@ -224,7 +226,8 @@ function MyVerticallyCenteredModal(props) {
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       console.log(downloadURL)
       setrUrl(downloadURL)
-      console.log(reportUrl)
+      setValues(prevUser => ({...prevUser,report:reportUrl}));
+      console.log(values)
 
     });
   }
@@ -232,6 +235,8 @@ function MyVerticallyCenteredModal(props) {
     }
     const onSubmit=async()=>{
       try {
+        setValues(prevUser => ({...prevUser,image:imageUrl,report:reportUrl}));
+        console.log(values)
         const docRef = await EventDataService.addEvent(values,clubName);
         console.log("Document written with ID: ", docRef.id);
 
@@ -251,8 +256,26 @@ function MyVerticallyCenteredModal(props) {
         noofstud:"",
         url:"",
         remarks:"",
-        image:imageUrl,
-        report:reportUrl
+        image:"",
+        report:""
+        
+      })
+    }
+    const close=()=>{
+      setModalShow(false);
+      setValues({
+        title:"",
+        theme:"",
+        venue:"",
+        mode:"",
+        date:"",
+        duration:"",
+        nooffaculty:"",
+        noofstud:"",
+        url:"",
+        remarks:"",
+        image:"",
+        report:""
         
       })
     }
@@ -287,7 +310,7 @@ function MyVerticallyCenteredModal(props) {
           setImage={setImage}
           setValues={setValues}
           onSubmit={onSubmit}
-          onHide={() => setModalShow(false)}
+          onHide={close}
         />
       </>
     );

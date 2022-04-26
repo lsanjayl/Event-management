@@ -186,7 +186,7 @@ function MyVerticallyCenteredModal(props) {
   
     return (
       <>
-        <Button variant="outline-light" onClick={handleEdit}style={{margin:"10px"}}>
+        <Button variant="outline-primary" onClick={handleEdit}style={{margin:"10px"}}>
           Edit
         </Button>
   
