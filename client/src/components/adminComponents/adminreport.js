@@ -16,8 +16,11 @@ const Adminreport = () => {
      <div >
         
       <Head/>
+      
       <Button style={{margin:"20px"}} onClick={handlePrint} >Download</Button>
       <ComponentToPrint ref={componentRef} />
+      
+      
       
     </div>
   );

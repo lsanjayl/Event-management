@@ -2,12 +2,14 @@ import React from "react"
 import {useEffect,useState} from "react"
 import Head from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
-import { Button, Table } from 'react-bootstrap';
 import EventModal from "../Forms/Modal";
 import EventEdit from "../Forms/Edit";
 import EventDataService from "../../services/event.services"
 import { useUserAuth } from "../../services/authservice";
-const Dashboard=()=>{
+import {FloatingLabel,Form, Button, Table} from "react-bootstrap"
+
+ const Dashboard=()=>{
+        const [event,setEvent]=useState("");
         const [events, setEvents] = useState([]);
         const navigate=useNavigate();
         const {user}=useUserAuth()
@@ -17,6 +19,12 @@ const Dashboard=()=>{
         useEffect(() => {
           getEvents();
         }, []);
+        const filt=(e)=>{
+            setEvent(e.target.value)
+            console.log(event)
+            setEvents(events.filter((i)=>{return (i.event==={event})}))
+            console.log(events)
+        }
         const getEvents = async () => {
           const data = await EventDataService.getAllEvent(club);
           setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -28,36 +36,25 @@ const Dashboard=()=>{
           };
     return <div>
         <Head/>
-
-
-        
-        
-
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
            
            <Button variant="primary" style={{margin:"10px"}} onClick={()=>navigate("/download")}>
            Download report
            </Button>
-
-
            <div style={{display:"flex",alignItems:"center"}}>
-           <EventModal choice={club} />
-           <Button variant="primary"  style={{margin:"10px",width:"110px"}} onClick={getEvents} >
-            Refresh List
-            </Button>
-
-           
-           
+           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1"style={{margin:"10px",width:"140px",height:"50px"}}>
+                <FloatingLabel controlId="floatingInput" label="Event type" className="mb-3">
+                <Form.Select aria-label="Floating label select example" name="event" value={event} onChange={(e)=>filt(e)}>
+                <option value="1">ALL</option>
+                <option value="Intracollege">Intracollege</option>
+                <option value="National level">National level</option>
+                <option value="International level">International level</option>
+                </Form.Select>          
+                </FloatingLabel>
+          </Form.Group>
+            <EventModal choice={club} getEvents={getEvents}/>
            </div>
         </div>
-        
-
-       
-
-    
-        
-
-
     <div style={{padding:"10px"}}>
     <Table striped bordered hover variant="light">
         <thead>
@@ -83,6 +80,9 @@ const Dashboard=()=>{
                 <td>Theme:{doc.theme}</td>
                 <br></br>
                 <td>Duration:{doc.duration}</td>
+                <br></br>
+                <td>Event:{doc.event}</td>
+                
             </td>
             <td>
             <td>No.of.students participated:{doc.noofstud}</td>
@@ -93,26 +93,26 @@ const Dashboard=()=>{
                 
             </td>
             <td>
-                
-                
-                <td>Remarks:{doc.remarks}</td>
-                <br></br>
                 <td>Venue:{doc.venue}</td>
                 <br></br>
                 <td>Date:{doc.date}</td>
+                <br></br>
+                <td>Mode:{doc.mode}</td>
+                <br></br>
+                <td>Remarks:{doc.remarks}</td>
             </td>
             <td>
                 <label>Uploaded files</label>
                 <br></br>
                 <br></br>
-                <a href={doc.report}target="_blank"style={{textDecoration:"none",color:"white",background:"#0d6efd",borderRadius:"4px",margin:"10px",padding:"5px 7px"}}>Report</a>
+                <a href={doc.report}target="_blank"style={{textDecoration:"none",color:"white",background:"#0d6efd",borderRadius:"4px",margin:"10px",padding:"5px 7px"}}>Download report</a>
                 <br></br>
                 <br></br>
-                <a href={doc.image} target="_blank" style={{textDecoration:"none",color:"white",background:"#0d6efd",borderRadius:"4px",margin:"10px",padding:"5px 7px"}}>Images</a>
+                <a href={doc.image} target="_blank" style={{textDecoration:"none",color:"white",background:"#0d6efd",borderRadius:"4px",margin:"10px",padding:"5px 7px"}}>View image</a>
             </td>
             <td>
                 
-                <EventEdit id={doc.id} choice={club}/>
+                <EventEdit id={doc.id} choice={club} getEvents={getEvents}/>
                 <br></br>
                 <Button onClick={(e) => deleteHandler(doc.id)}  variant="outline-danger"style={{margin:"10px"}}>Delete</Button>
             </td>

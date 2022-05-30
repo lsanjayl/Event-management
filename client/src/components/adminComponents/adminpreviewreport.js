@@ -23,7 +23,8 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
     return (
-      <div style={{margin:"0px 50px"}} ref={ref}>
+      <div>
+      <div style={{display:"flex", margin:"10px"}}>
         <Form.Select variant="primary" value={choice} onChange={(e)=>setChoice(e.target.value)}style={{width:"150px"}}>
            <option value="">Choose</option>
            <option value="mapps" >Mapps</option>
@@ -31,6 +32,9 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
            <option value="photography">photography</option>
         </Form.Select>
         <Button variant="primary"  style={{margin:"10px"}} onClick={handleAdmin}> Search </Button>
+        </div>
+      <div style={{margin:"0px 50px"}} ref={ref}>
+        
         <Navbar bg="light" variant="dark">
          <Container style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:"100%"}}>
          <Navbar.Brand href="#home">
@@ -96,5 +100,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         </tbody>
     </Table>
     </div>
+    </div>
     );
+    
   });

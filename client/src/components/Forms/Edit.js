@@ -100,6 +100,22 @@ function MyVerticallyCenteredModal(props) {
         </Form.Group>
         </Col>
         </Row>
+        <Row>
+          <Col>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <FloatingLabel controlId="floatingInput" label="Event type" className="mb-3">
+          <Form.Select aria-label="Floating label select example" value={props.values.event}  name="event" onChange={handleChange}>
+            <option value="Intercollege">Intercollege</option>
+            <option value="Intracollege">Intracollege</option>
+            <option value="National level">National level</option>
+            <option value="International level">International level</option>
+            </Form.Select>          
+          </FloatingLabel>
+          </Form.Group>
+          </Col>
+          <Col></Col>
+        </Row>
+        
         {/* <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
@@ -135,7 +151,7 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
-  function EventEdit({id,choice}) {
+  function EventEdit({id,choice,getEvents}) {
     
     
     const [modalShow, setModalShow] =useState(false);
@@ -149,7 +165,8 @@ function MyVerticallyCenteredModal(props) {
         nooffaculty:"",
         noofstud:"",
         url:"",
-        remarks:""
+        remarks:"",
+        event:""
       })
     const handleEdit=async()=>{
         setModalShow(true);
@@ -163,6 +180,7 @@ function MyVerticallyCenteredModal(props) {
     const onSubmit=async()=>{
       try {
         const docRef = await EventDataService.updateEvent(id,values,choice);
+        getEvents();
 
       } catch (e) {
         console.error("Error adding document: ", e);
@@ -179,7 +197,8 @@ function MyVerticallyCenteredModal(props) {
         nooffaculty:"",
         noofstud:"",
         url:"",
-        remarks:""
+        remarks:"",
+        event:""
       })
     }
     

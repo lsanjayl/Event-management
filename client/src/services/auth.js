@@ -4,14 +4,13 @@ import {getAuth} from "firebase/auth"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAtIR-KGhBCq1O6Kd_3xxpPQhLnq8XVGgk",
-    authDomain: "event-manager-44204.firebaseapp.com",
-    projectId: "event-manager-44204",
-    storageBucket: "event-manager-44204.appspot.com",
-    messagingSenderId: "845040531183",
-    appId: "1:845040531183:web:64c8c8a9b4d68a3d900d1a",
-    measurementId: "G-CZDS0KZT7H"
-};
+    apiKey: "AIzaSyCW4b9gvHAKEgrzFCWvSQ7RDDS_OvYxyHI",
+    authDomain: "event-manager-46daf.firebaseapp.com",
+    projectId: "event-manager-46daf",
+    storageBucket: "event-manager-46daf.appspot.com",
+    messagingSenderId: "610355809655",
+    appId: "1:610355809655:web:d5358362c0f7a904cce572"
+  };
 
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage();

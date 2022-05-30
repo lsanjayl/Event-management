@@ -104,6 +104,21 @@ function MyVerticallyCenteredModal(props) {
         </Col>
         </Row>
         <Row>
+          <Col>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <FloatingLabel controlId="floatingInput" label="Event type" className="mb-3">
+          <Form.Select aria-label="Floating label select example" value={props.values.event}  name="event" onChange={handleChange}>
+            <option value="Intercollege">Intercollege</option>
+            <option value="Intracollege">Intracollege</option>
+            <option value="National level">National level</option>
+            <option value="International level">International level</option>
+            </Form.Select>          
+          </FloatingLabel>
+          </Form.Group>
+          </Col>
+          <Col></Col>
+        </Row>
+        <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
         <FormLabel>Report files</FormLabel>
@@ -140,12 +155,10 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
-  function EventModal({choice}) {
+  function EventModal({choice,getEvents}) {
     const [modalShow, setModalShow] =useState(false);
     const [image,setImage]=useState("");
     const [report,setReport]=useState("");
-    const [imageUrl,setiUrl]=useState("")
-    const [reportUrl,setrUrl]=useState("")
     const clubName=choice
     const upload = ()=>{
       if(image == null)
@@ -182,8 +195,7 @@ function MyVerticallyCenteredModal(props) {
   () => {
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       console.log(downloadURL)
-      setiUrl(downloadURL)
-      setValues(prevUser => ({...prevUser,image:imageUrl}));
+      setValues(prevUser => ({...prevUser,image:downloadURL,imgRef:image.name}));
       console.log(values)
     });
     
@@ -225,8 +237,7 @@ function MyVerticallyCenteredModal(props) {
   () => {
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       console.log(downloadURL)
-      setrUrl(downloadURL)
-      setValues(prevUser => ({...prevUser,report:reportUrl}));
+      setValues(prevUser => ({...prevUser,report:downloadURL,repRef:report.name}));
       console.log(values)
 
     });
@@ -235,11 +246,10 @@ function MyVerticallyCenteredModal(props) {
     }
     const onSubmit=async()=>{
       try {
-        setValues(prevUser => ({...prevUser,image:imageUrl,report:reportUrl}));
         console.log(values)
         const docRef = await EventDataService.addEvent(values,clubName);
         console.log("Document written with ID: ", docRef.id);
-
+        getEvents()
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -257,7 +267,10 @@ function MyVerticallyCenteredModal(props) {
         url:"",
         remarks:"",
         image:"",
-        report:""
+        report:"",
+        repRef:"",
+        imgRef:"",
+        event:"",
         
       })
     }
@@ -275,7 +288,10 @@ function MyVerticallyCenteredModal(props) {
         url:"",
         remarks:"",
         image:"",
-        report:""
+        report:"",
+        repRef:"",
+        imgRef:"",
+        event:"",
         
       })
     }
@@ -291,7 +307,10 @@ function MyVerticallyCenteredModal(props) {
       url:"",
       remarks:"",
       image:"",
-      report:""
+      report:"",
+      repRef:"",
+      imgRef:"",
+      event:"",
       
     })
   
