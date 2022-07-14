@@ -3,11 +3,11 @@ import { useUserAuth } from "../../services/authservice";
 import {useEffect,useState} from "react"
 import { Navbar,Nav,Container } from 'react-bootstrap';
 import EventDataService from "../../services/event.services"
-import { Button,Table,Form } from 'react-bootstrap';
+import { Button,Form } from 'react-bootstrap';
+import Previewtable from '../Table/Previewtable';
 export const ComponentToPrint = React.forwardRef((props, ref) => {
   const [choice,setChoice]=useState("")
   const [events, setEvents] = useState([]);
-  const [selected,setSelected]=useState(true)
          //=========club name display=============/
         useEffect(() => {
           getEvents();
@@ -15,7 +15,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         const handleAdmin=()=>{
           console.log(choice)
           setChoice(choice)
-          setSelected(false);
           getEvents();
       }
         const getEvents = async () => {
@@ -31,7 +30,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
            <option value="maths">Maths</option>
            <option value="photography">photography</option>
         </Form.Select>
-        <Button variant="primary"  style={{margin:"10px"}} onClick={handleAdmin}> Search </Button>
+        <Button variant="primary"  style={{margin:"10px"}} onClick={handleAdmin}> Apply </Button>
         </div>
       <div style={{margin:"0px 50px"}} ref={ref}>
         
@@ -53,52 +52,11 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         </Nav>
         </Container>
         </Navbar>
-    <Table striped bordered hover variant="light">
-        <thead>
-          <tr>
-          <th>Serial</th> 
-          <th>Activity Details</th> 
-          <th>Participant Details</th> 
-          <th>More info</th> 
-          </tr>
-        </thead>
-        <tbody>
-            {events.map((doc,index)=>{
-                return(
-            <tr key={doc.id}>
-                <td>
-                    {index+1}
-                </td>
-            <td>
-                <td>Title:{doc.title}</td>
-                <br></br>
-                <td>Theme:{doc.theme}</td>
-                <br></br>
-                <td>Duration:{doc.duration}</td>
-            </td>
-            <td>
-            <td>No.of.students participated:{doc.noofstud}</td>
-                <br></br>
-                <td>No.of.faculties participated:{doc.nooffaculty}</td>
-                <br></br>
-                <td>URL:{doc.url}</td>
-            </td>
-            <td>
-                <td>Remarks:{doc.remarks}</td>
-                <br></br>
-                <td>Venue:{doc.venue}</td>
-                <br></br>
-                <td>Date:{doc.date}</td>
-            </td>
-            
-           
-            </tr>
-            
-                )
-             })}
-            
-        </tbody>
-    </Table>
+
+
+        <Previewtable events={events}/>
+
+
     </div>
     </div>
     );

@@ -1,12 +1,12 @@
 
-import Dashboard from "./components/users/dashboard"
-import Example from "./components/users/clientreport"
-import Admin from "./components/adminComponents/admin"
+import Dashboard from "./Pages/dashboard"
+import Example from "./Pages/clientreport"
+import Admin from "./Pages/admin"
 import { Route, Routes } from 'react-router-dom'
-import Login from "./components/login/login"
+import Login from "./Pages/login"
 import ProtectedRoute from './services/ProtectedRoute'
 import { UserAuthContextProvider } from "./services/authservice";
-import Adminreport from "./components/adminComponents/adminreport"
+import Adminreport from "./Pages/adminreport"
 function App() {
   
   return (

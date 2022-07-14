@@ -1,8 +1,8 @@
 import React, { useRef,useState } from 'react';
-import Head from "../Navbar/Navbar"
+import Head from "../components/Navbar/Navbar"
 import { useReactToPrint } from 'react-to-print';
 import { Button} from 'react-bootstrap';
-import { ComponentToPrint } from './adminpreviewreport';
+import { ComponentToPrint } from '../components/adminComponents/adminpreviewreport';
 
 
 const Adminreport = () => {

@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserAuth } from "../../services/authservice";
+import { useUserAuth } from "../services/authservice";
 import { Navbar,Container} from 'react-bootstrap';
 const Login=()=>{
   const{login}=useUserAuth();

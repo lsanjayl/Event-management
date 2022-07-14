@@ -35,9 +35,15 @@ function MyVerticallyCenteredModal(props) {
         </Col>
 
         <Col>
-        <FloatingLabel controlId="floatingInput" label="Theme">
-        <Form.Control type="text" placeholder="seminar/webinar"  name="theme"   value={props.values.theme} onChange={handleChange}/>
-        </FloatingLabel>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <FloatingLabel controlId="floatingInput" label="Theme" className="mb-3">
+          <Form.Select aria-label="Floating label select example" value={props.values.theme}  name="theme" onChange={handleChange}>
+            <option value="webinar">Webinar/Handson</option>
+            <option value="hackathon">Hackathon</option>
+            <option value="awarnessprograms">Awarness programs</option>
+            </Form.Select>          
+          </FloatingLabel>
+          </Form.Group>
         </Col>
 
         </Row>
@@ -106,9 +112,8 @@ function MyVerticallyCenteredModal(props) {
           <FloatingLabel controlId="floatingInput" label="Event type" className="mb-3">
           <Form.Select aria-label="Floating label select example" value={props.values.event}  name="event" onChange={handleChange}>
             <option value="Intercollege">Intercollege</option>
-            <option value="Intracollege">Intracollege</option>
-            <option value="National level">National level</option>
-            <option value="International level">International level</option>
+            <option value="Nationallevel">National level</option>
+            <option value="Internationallevel">International level</option>
             </Form.Select>          
           </FloatingLabel>
           </Form.Group>
@@ -157,16 +162,16 @@ function MyVerticallyCenteredModal(props) {
     const [modalShow, setModalShow] =useState(false);
     const [values,setValues]=useState({
         title:"",
-        theme:"",
+        theme:"webinar",
         venue:"",
-        mode:"",
+        mode:"Offline",
         date:"",
         duration:"",
         nooffaculty:"",
         noofstud:"",
         url:"",
         remarks:"",
-        event:""
+        event:"Intercollege"
       })
     const handleEdit=async()=>{
         setModalShow(true);
