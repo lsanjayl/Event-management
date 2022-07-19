@@ -29,6 +29,7 @@ const Dashboard = () => {
     console.log("Firebase events fetch")
     callForfilteventsset();
   };
+      //=============Filter================/
   const callForfilteventsset = () => setFiltEvents(events)
   const filterEvents = async (theme, event, mode) => {
     console.log(filtEvents)
@@ -36,7 +37,7 @@ const Dashboard = () => {
     setEvents(data);
     console.log(data);
   }
-
+    //=============Pagination================/
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = events.slice(indexOfFirstPost, indexOfLastPost);
