@@ -7,8 +7,28 @@ import Login from "./Pages/login"
 import ProtectedRoute from './services/ProtectedRoute'
 import { UserAuthContextProvider } from "./services/authservice";
 import Adminreport from "./Pages/adminreport"
+import { useNavigate } from "react-router-dom";
 function App() {
-  
+  const navigate=useNavigate();
+  window.onbeforeunload = async(e) => {
+    // I'm about to refresh! do something...
+    const email= localStorage.getItem("email");
+    const password= localStorage.getItem("password");
+    if(email && password){
+    const club=email.slice(3,-17)
+    if(club==="admin"){
+      navigate("/admin")
+    }else{
+      console.log(email);
+      navigate("/dashboard")
+      e.preventDefault()
+    }
+    }
+    else{
+      navigate("/")
+    }
+    };
+
   return (
     <UserAuthContextProvider>
       <Routes>
