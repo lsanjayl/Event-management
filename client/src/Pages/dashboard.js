@@ -26,12 +26,12 @@ const Dashboard = () => {
   const getEvents = async () => {
     const data = await EventDataService.getAllEvent(club);
     setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setFiltEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     console.log("Firebase events fetch")
-    callForfilteventsset();
   };
-      //=============Filter================/
-  const callForfilteventsset = () => setFiltEvents(events)
+
   const filterEvents = async (theme, event, mode) => {
+    
     console.log(filtEvents)
     const data = await EventDataService.filt(filtEvents, theme, event, mode);
     setEvents(data);

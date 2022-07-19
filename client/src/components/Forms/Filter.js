@@ -1,6 +1,5 @@
 import React from "react"
 import { useState } from "react"
-import EventDataService from "../../services/event.services"
 import { Button, Modal, FloatingLabel, Form, Container, Row, Col } from "react-bootstrap"
 function MyVerticallyCenteredModal(props) {
   const handleChange = e => {
@@ -69,6 +68,7 @@ function Filter({ filterEvents }) {
   const [modalShow, setModalShow] = useState(false);
   const onSubmit = async () => {
     try {
+      console.log(values);
       await filterEvents(values.theme, values.event, values.mode);
     } catch (e) {
       console.error("Error adding document: ", e);
