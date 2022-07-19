@@ -1,12 +1,7 @@
-import React from "react"
-import { useState } from "react"
-import EventDataService from "../../services/event.services"
-import { Button, Modal, FloatingLabel, Form, Container, Row, Col } from "react-bootstrap"
-import Close from "./Close"
+import { Button, Modal, FloatingLabel, Form, Container, Row, Col, FormLabel } from "react-bootstrap"
+import Close from "./Close";
 function MyVerticallyCenteredModal(props) {
-
   const handleChange = e => {
-
     props.setValues(prevUser => ({ ...prevUser, [e.target.name]: e.target.value }));
   }
   return (
@@ -35,6 +30,7 @@ function MyVerticallyCenteredModal(props) {
               </FloatingLabel>
             </Col>
 
+
             <Col>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <FloatingLabel controlId="floatingInput" label="Theme" className="mb-3">
@@ -45,6 +41,7 @@ function MyVerticallyCenteredModal(props) {
                   </Form.Select>
                 </FloatingLabel>
               </Form.Group>
+
             </Col>
 
           </Row>
@@ -121,24 +118,25 @@ function MyVerticallyCenteredModal(props) {
             </Col>
             <Col></Col>
           </Row>
+          <Row>
+            <Col>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+                <FormLabel>Report files</FormLabel>
+                <Form.Control name="reports" type="file" onChange={(e) => props.setReport(e.target.files[0])} />
+                <Button onClick={props.uploadrep}>Upload</Button>
+              </Form.Group>
+            </Col>
 
-          {/* <Row>
-        <Col>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
-        <FormLabel>Report files</FormLabel>
-        <Form.Control name="reports" type="file" />
-        </Form.Group>
-        </Col>
-        
-        </Row>
-        <Row>
-        <Col>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
-        <FormLabel>Images</FormLabel>
-        <Form.Control name="images" type="file"/>
-        </Form.Group>
-        </Col>
-        </Row> */}
+          </Row>
+          <Row>
+            <Col>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+                <FormLabel>Images</FormLabel>
+                <Form.Control name="images" type="file" onChange={(e) => props.setImage(e.target.files[0])} />
+                <Button onClick={props.upload}>Upload</Button>
+              </Form.Group>
+            </Col>
+          </Row>
 
 
 
@@ -148,82 +146,12 @@ function MyVerticallyCenteredModal(props) {
 
 
       <Modal.Footer>
-        <Close hide={props.onHide} content={"Are sure you want to close if changes made may not be stored ?"} />
-        <Button onClick={props.onSubmit}>Update</Button>
+        <Close hide={props.onHide} content={"Are you sure you want to close if details added will not be stored ?"} />
+        <Button onClick={props.onSubmit}>Submit</Button>
       </Modal.Footer>
 
 
     </Modal>
   );
 }
-
-function EventEdit({ id, choice, getEvents }) {
-
-
-  const [modalShow, setModalShow] = useState(false);
-  const [values, setValues] = useState({
-    title: "",
-    theme: "webinar",
-    venue: "",
-    mode: "Offline",
-    date: "",
-    duration: "",
-    nooffaculty: "",
-    noofstud: "",
-    url: "",
-    remarks: "",
-    event: "Intercollege"
-  })
-  const handleEdit = async () => {
-    setModalShow(true);
-    const docSnap = await EventDataService.getEvent(id, choice);
-    setValues(docSnap.data());
-
-  }
-
-
-
-  const onSubmit = async () => {
-    try {
-      const docRef = await EventDataService.updateEvent(id, values, choice);
-      getEvents();
-
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-
-    setModalShow(false);
-    setValues({
-      title: "",
-      theme: "",
-      venue: "",
-      mode: "",
-      date: "",
-      duration: "",
-      nooffaculty: "",
-      noofstud: "",
-      url: "",
-      remarks: "",
-      event: ""
-    })
-  }
-
-
-  return (
-    <>
-      <Button variant="outline-primary" onClick={handleEdit} style={{ margin: "10px" }}>
-        Edit
-      </Button>
-
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        values={values}
-        setValues={setValues}
-        onSubmit={onSubmit}
-        onHide={() => setModalShow(false)}
-      />
-    </>
-  );
-}
-
-export default EventEdit;
+export default MyVerticallyCenteredModal;
