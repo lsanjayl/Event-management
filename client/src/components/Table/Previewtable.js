@@ -23,6 +23,8 @@ const Previewtable = ({ events }) => {
                                 <td>Theme:{doc.theme}</td>
                                 <br></br>
                                 <td>Duration:{doc.duration}</td>
+                                <br></br>
+                                <td>Event:{doc.event}</td>
                             </td>
                             <td>
                                 <td>No.of.students participated:{doc.noofstud}</td>
@@ -37,6 +39,9 @@ const Previewtable = ({ events }) => {
                                 <td>Venue:{doc.venue}</td>
                                 <br></br>
                                 <td>Date:{doc.date}</td>
+                                <td>Mode:{doc.mode}</td>
+                                <br></br>
+                                <td>Remarks:{doc.remarks}</td>
                             </td>
                         </tr>
 
