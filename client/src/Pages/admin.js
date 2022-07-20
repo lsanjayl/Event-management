@@ -24,11 +24,7 @@ const Admin = () => {
         setChoice(club);
     }
     //=============Admin-select================/
-    const handleAdmin =() => {
-        stage();
-        stage();
-    }
-    const stage=async()=>{
+    const handleAdmin =async () => {
         console.log(choice)
         setChoice(choice)
         setSelected(false);
