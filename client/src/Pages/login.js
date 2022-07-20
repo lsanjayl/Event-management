@@ -9,6 +9,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
+  const user= localStorage.getItem("email");
+  if(user){
+    if(((user).slice(3, -17))==="admin"){
+      navigate("/admin");
+    }
+    else{
+      navigate("/");
+    }
+  }
   const reset = () => {
     setEmail('')
     setPassword('')
@@ -24,7 +33,7 @@ const Login = () => {
       if (club === "admin") {
         navigate("/admin")
       } else {
-        navigate("/dashboard")
+        navigate("/")
       }
 
       reset();

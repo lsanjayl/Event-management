@@ -8,7 +8,7 @@ import { useUserAuth } from "../services/authservice";
 import { Button } from "react-bootstrap"
 import Eventtable from "../components/Table/Eventtable";
 import Filter from "../components/Forms/Filter"
-import Pagination from "../components/Clientcomponents/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
   const [filtEvents, setFiltEvents] = useState([]);
@@ -18,7 +18,8 @@ const Dashboard = () => {
   const { user } = useUserAuth()
 
   //=========club name display=============/
-  const club = user.email.slice(3, -17)
+  const club = (localStorage.getItem("email")).slice(3, -17);
+  const clubName = club[0].toUpperCase() + club.substring(1);
   //=============list events================/
   useEffect(() => {
     getEvents();
@@ -31,7 +32,6 @@ const Dashboard = () => {
   };
 
   const filterEvents = async (theme, event, mode) => {
-    
     console.log(filtEvents)
     const data = await EventDataService.filt(filtEvents, theme, event, mode);
     setEvents(data);
@@ -46,7 +46,7 @@ const Dashboard = () => {
   return <div>
     <Head />
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
-      <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/download", { state: { events: events } })}>
+      <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/download", { state: { events: events,clubName:clubName } })}>
         Download report
       </Button>
       <div style={{ display: "flex", alignItems: "center" }}>

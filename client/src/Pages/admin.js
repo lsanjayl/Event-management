@@ -8,7 +8,7 @@ import { useUserAuth } from "../services/authservice";
 import Head from "../components/Navbar/Navbar"
 import Eventtable from "../components/Table/Eventtable";
 import Filter from "../components/Forms/Filter"
-import Pagination from "../components/Clientcomponents/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 const Admin = () => {
     const [selected, setSelected] = useState(true)
     const [events, setEvents] = useState([]);
@@ -17,9 +17,8 @@ const Admin = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(7);
     const navigate = useNavigate();
-    const { user } = useUserAuth()
     //=========club name display=============/
-    const club = user.email.slice(3, -17)
+    const club = (localStorage.getItem("email")).slice(3, -17);
     if (club !== "admin") {
         setChoice(club);
     }
@@ -30,6 +29,7 @@ const Admin = () => {
         setSelected(false);
         await getEvents();
     }
+
     //=============list events================/
     useEffect(() => {
         getEvents();
@@ -60,7 +60,7 @@ const Admin = () => {
         {/* Options for adding / downloadingreport */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
 
-            <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/admindownload")}>
+            <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/download", { state: { events: events,clubName:choice } })}>
                 Download report
             </Button>
 
