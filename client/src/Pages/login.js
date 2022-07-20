@@ -9,9 +9,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
-  const user= (localStorage.getItem("email")).slice(3, -17);
+  const user= localStorage.getItem("email");
   if(user){
-    if(user==="admin"){
+    if(((user).slice(3, -17))==="admin"){
       navigate("/admin");
     }
     else{
