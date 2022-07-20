@@ -8,7 +8,7 @@ import { useUserAuth } from "../services/authservice";
 import Head from "../components/Navbar/Navbar"
 import Eventtable from "../components/Table/Eventtable";
 import Filter from "../components/Forms/Filter"
-import Pagination from "../components/Clientcomponents/Pagination";
+import Pagination from "../components/Pagination/Pagination";
 const Admin = () => {
     const [selected, setSelected] = useState(true)
     const [events, setEvents] = useState([]);
@@ -23,16 +23,13 @@ const Admin = () => {
         setChoice(club);
     }
     //=============Admin-select================/
-    const handleAdmin =() => {
-        stage();
-        stage();
-    }
-    const stage=async()=>{
+    const handleAdmin =async () => {
         console.log(choice)
         setChoice(choice)
         setSelected(false);
         await getEvents();
     }
+
     //=============list events================/
     useEffect(() => {
         getEvents();
@@ -63,7 +60,7 @@ const Admin = () => {
         {/* Options for adding / downloadingreport */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
 
-            <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/admindownload")}>
+            <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/download", { state: { events: events,clubName:choice } })}>
                 Download report
             </Button>
 

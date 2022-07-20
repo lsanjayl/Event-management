@@ -1,12 +1,11 @@
 
 import Dashboard from "./Pages/dashboard"
-import Example from "./Pages/clientreport"
+import Example from "./Pages/Report"
 import Admin from "./Pages/admin"
 import { Route, Routes } from 'react-router-dom'
 import Login from "./Pages/login"
 import ProtectedRoute from './services/ProtectedRoute'
 import { UserAuthContextProvider } from "./services/authservice";
-import Adminreport from "./Pages/adminreport"
 function App() {
   return (
     <UserAuthContextProvider>
@@ -26,7 +25,6 @@ function App() {
         </ProtectedRoute> 
         }
         />
-        <Route path="/admindownload"element={<ProtectedRoute><Adminreport/></ProtectedRoute>}/>
         <Route path="/download" element={<ProtectedRoute><Example/></ProtectedRoute>}/>
       </Routes>
       </UserAuthContextProvider>

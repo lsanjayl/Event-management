@@ -6,10 +6,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 
   // const [events, setEvents] = useState([]);
   const events = props.events;
-  const { user } = useUserAuth()
-  //=========club name display=============/
-  const club = user.email.slice(3, -17)
-  const clubName = club[0].toUpperCase() + club.substring(1);
+  const clubName=props.clubName;
   return (
     <div style={{ margin: "0px 50px" }} ref={ref}>
 
@@ -26,7 +23,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </Navbar.Brand>
           <Navbar.Brand style={{ color: "black" }}> Event Details</Navbar.Brand>
           <Nav style={{ display: 'flex', alignItems: 'center' }}>
-            <Navbar.Brand style={{ color: "black" }}>{user && clubName}club</Navbar.Brand>
+            <Navbar.Brand style={{ color: "black" }}>{clubName}club</Navbar.Brand>
           </Nav>
         </Container>
       </Navbar>
