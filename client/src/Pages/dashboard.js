@@ -18,7 +18,8 @@ const Dashboard = () => {
   const { user } = useUserAuth()
 
   //=========club name display=============/
-  const club = user.email.slice(3, -17)
+  const club = (localStorage.getItem("email")).slice(3, -17);
+
   //=============list events================/
   useEffect(() => {
     getEvents();

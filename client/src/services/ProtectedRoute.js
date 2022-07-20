@@ -3,10 +3,10 @@ import { Navigate } from "react-router-dom"
 import { useUserAuth } from "./authservice"
 
 const ProtectedRoute = ({ children }) => {
-    let { user } = useUserAuth();
+    const user= localStorage.getItem("email");
     console.log(user)
     if (!user) {
-        return <Navigate to="/" />
+        return <Navigate to="/login" />
     }
     return children;
 }

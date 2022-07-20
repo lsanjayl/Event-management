@@ -1,13 +1,18 @@
 import { useUserAuth } from "../../services/authservice";
 import { Button, Navbar, Nav, Container } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 const Head = () => {
     const { logOut, user } = useUserAuth()
-    const club = user.email.slice(3, -17)
+    const club= (localStorage.getItem("email")).slice(3, -17);
     const clubName = club[0].toUpperCase() + club.substring(1);
+    const navigate = useNavigate();
     let clubTag = "club"
     const handleLogout = async () => {
         try {
             await logOut();
+            localStorage.setItem("email","");
+            localStorage.setItem("password","");
+            navigate("/login");
         }
         catch (e) {
             console.log(e.message);
@@ -28,7 +33,7 @@ const Head = () => {
                 <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
 
                 <Nav style={{ display: 'flex', alignItems: 'center' }}>
-                    <Navbar.Brand >{user && clubName}</Navbar.Brand>
+                    <Navbar.Brand >{clubName}</Navbar.Brand>
 
                     <Nav.Link> <Button variant="outline-light" onClick={handleLogout}>
                         Logout
