@@ -1,5 +1,6 @@
 import { Button, Modal, FloatingLabel, Form, Container, Row, Col, FormLabel } from "react-bootstrap"
 import Close from "./Close";
+import Spinner from 'react-bootstrap/Spinner';
 function MyVerticallyCenteredModal(props) {
   const handleChange = e => {
     props.setValues(prevUser => ({ ...prevUser, [e.target.name]: e.target.value }));
@@ -123,7 +124,10 @@ function MyVerticallyCenteredModal(props) {
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
                 <FormLabel>Report files</FormLabel>
                 <Form.Control name="reports" type="file" onChange={(e) => props.setReport(e.target.files[0])} />
-                <Button onClick={props.uploadrep}>Upload</Button>
+                <div style={{display:"flex"}}>
+                {props.reportUpload.state?<Button variant="success" disabled style={{margin:"10px 5px 0px 10px"}}>Uploaded</Button>:<Button onClick={props.uploadrep}style={{margin:"10px 5px 0px 10px",backgroundColor:"#189AB4",color:"white"}}>Upload</Button>}
+                {props.reportUpload.isUploading&&<Spinner animation="border" variant="primary"style={{margin:"12px 5px 0px 10px"}}/>}
+                </div>
               </Form.Group>
             </Col>
 
@@ -133,7 +137,10 @@ function MyVerticallyCenteredModal(props) {
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
                 <FormLabel>Images</FormLabel>
                 <Form.Control name="images" type="file" onChange={(e) => props.setImage(e.target.files[0])} />
-                <Button onClick={props.upload}>Upload</Button>
+                <div style={{display:"flex"}}>
+                {props.imageUpload.state?<Button variant="success" disabled style={{margin:"10px 5px 0px 10px"}}>Uploaded</Button>:<Button onClick={props.upload}style={{margin:"10px 5px 0px 10px",backgroundColor:"#189AB4",color:"white"}}>Upload</Button>}
+                {props.imageUpload.isUploading&&<Spinner animation="border" variant="primary"style={{margin:"12px 5px 0px 10px"}}/>}
+                </div>
               </Form.Group>
             </Col>
           </Row>
@@ -147,7 +154,7 @@ function MyVerticallyCenteredModal(props) {
 
       <Modal.Footer>
         <Close hide={props.onHide} content={"Are you sure you want to close if details added will not be stored ?"} />
-        <Button onClick={props.onSubmit}>Submit</Button>
+        <Button style={{backgroundColor:"#189AB4",color:"white"}}onClick={props.onSubmit}>Submit</Button>
       </Modal.Footer>
 
 

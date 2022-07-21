@@ -22,7 +22,7 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="outline-danger" onClick={props.onHide}>No</Button>
-        <Button variant="outline-success" onClick={props.onSubmit}>Yes</Button>
+        <Button style={{backgroundColor:"#189AB4",color:"white"}} onClick={props.onSubmit}>Yes</Button>
       </Modal.Footer>
     </Modal>
   );

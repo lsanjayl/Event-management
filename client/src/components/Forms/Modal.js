@@ -9,8 +9,17 @@ function EventModal({ choice, getEvents }) {
   const [modalShow, setModalShow] = useState(false);
   const [image, setImage] = useState("");
   const [report, setReport] = useState("");
+  const [imageUpload, setimageUpload] = useState({
+    isUploading: false,
+    state: false
+  });
+  const [reportUpload, setreportUpload] = useState({
+    isUploading: false,
+    state: false
+  });
   const clubName = choice
   const upload = () => {
+    setimageUpload(prevUser => ({ ...prevUser, isUploading:true}));
     if (image == null)
       return;
     const metadata = {
@@ -47,12 +56,15 @@ function EventModal({ choice, getEvents }) {
           console.log(downloadURL)
           setValues(prevUser => ({ ...prevUser, image: downloadURL, imgRef: image.name }));
           console.log(values)
+          setimageUpload(prevUser => ({ ...prevUser, isUploading:false}));
+          setimageUpload(prevUser => ({ ...prevUser, state:true}));
         });
 
       }
     );
   }
   const uploadrep = () => {
+    setreportUpload(prevUser => ({ ...prevUser, isUploading:true}));
     if (image == null)
       return;
     const metadata = {
@@ -89,7 +101,8 @@ function EventModal({ choice, getEvents }) {
           console.log(downloadURL)
           setValues(prevUser => ({ ...prevUser, report: downloadURL, repRef: report.name }));
           console.log(values)
-
+          setreportUpload(prevUser => ({ ...prevUser, isUploading:false}));
+          setreportUpload(prevUser => ({ ...prevUser, state:true}));
         });
       }
     );
@@ -113,6 +126,14 @@ function EventModal({ choice, getEvents }) {
       imgRef: "",
       event: "Intercollege",
 
+    })
+    setimageUpload({
+      isUploading: false,
+      state: false
+    })
+    setreportUpload({
+      isUploading: false,
+      state: false
     })
   }
   const onSubmit = async () => {
@@ -149,7 +170,7 @@ function EventModal({ choice, getEvents }) {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: "10px", width: "110px" }}>
+      <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: "10px", width: "110px",backgroundColor:"#189AB4",color:"white"}}>
         Add Event
       </Button>
 
@@ -163,6 +184,8 @@ function EventModal({ choice, getEvents }) {
         setValues={setValues}
         onSubmit={onSubmit}
         onHide={close}
+        imageUpload={imageUpload}
+        reportUpload={reportUpload}
       />
     </>
   );

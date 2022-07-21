@@ -57,10 +57,10 @@ const Eventtable = ({ events, getEvents, club }) => {
                                 <label>Downloadable files</label>
                                 <br></br>
                                 <br></br>
-                                <a href={doc.report} target="_blank" style={{ textDecoration: "none", color: "white", background: "#0d6efd", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Report</a>
+                                <a href={doc.report} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Report</a>
                                 <br></br>
                                 <br></br>
-                                <a href={doc.image} target="_blank" style={{ textDecoration: "none", color: "white", background: "#0d6efd", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Images</a>
+                                <a href={doc.image} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Images</a>
                             </td>
                             <td>
                                 <EventEdit id={doc.id} choice={club} getEvents={getEvents} />

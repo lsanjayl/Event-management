@@ -59,7 +59,7 @@ function MyVerticallyCenteredModal(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onSubmit}>Apply</Button>
+        <Button style={{ margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={props.onSubmit}>Apply</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -94,7 +94,7 @@ function Filter({ filterEvents }) {
   })
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: "10px", width: "110px" }}>
+      <Button  onClick={() => setModalShow(true)} style={{ margin: "10px",backgroundColor:"#189AB4",color:"white"}}>
         Filter
       </Button>
       <MyVerticallyCenteredModal
