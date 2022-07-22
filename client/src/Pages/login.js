@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../services/authservice";
 import { Navbar, Container } from 'react-bootstrap';
+import image from "../Images/loginimage.png"
+import logo from "../Images/logo.png"
+// import background from "./background.svg"
 const Login = () => {
   const { login } = useUserAuth();
   const navigate = useNavigate();
@@ -46,36 +49,43 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <Navbar bg="dark" variant="dark">
+    <div style={{backgroundColor:"#D4F1F4",height:"100vh"}}>
+      <Navbar  variant="dark" style={{backgroundColor:"#003d55"}}>
         <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="#home" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <img
-              src="https://www.shamsaalam.com/wp-content/uploads/2019/10/Sri-Sairam-college.png"
-              width="160"
-              height="60"
+              src={logo}
+              height="70px"
               className="d-inline-block align-top"
               alt="logo"
             />
+            <Navbar.Brand href="/">Event manager</Navbar.Brand>
           </Navbar.Brand>
           <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
         </Container>
       </Navbar>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <form style={{ width: 400, height: 600, display: 'flex', flexDirection: 'column', justifyContent: 'center' }} onSubmit={handleSubmit}>
+      <div style={{ display: 'flex', justifyContent:'center', alignItems:"center"}}>
+      <img
+                        src={image}
+                        height="250px"
+                        className="d-inline-block align-top"
+                        alt="logo"
+                    />
+        <hr style={{width: "3px",height:"200px",display:"inline-block",color:"#6d6d6d"}}></hr>
+        <form style={{ width: 400, height: 600, display: 'flex', flexDirection: 'column', justifyContent: 'center',margin:"20px" }} onSubmit={handleSubmit}>
           <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <label for="inputEmail3" class="col-sm-2 col-form-label" style={{color:"#6d6d6d"}}>Email</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+              <input type="email" class="form-control" id="inputEmail3" value={email} onChange={(e) => { setEmail(e.target.value) }} style={{backgroundColor:"#c2e3e7",borderStyle:"solid",borderColor:"#10c0cc",borderWidth:"1px"}}/>
             </div>
           </div>
           <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label" >Password</label>
+            <label for="inputPassword3" class="col-sm-2 col-form-label" style={{color:"#6d6d6d"}}>Password</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword3" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+              <input type="password" class="form-control" id="inputPassword3" value={password} onChange={(e) => { setPassword(e.target.value) }} style={{backgroundColor:"#c2e3e7",borderStyle:"solid",borderColor:"#10c0cc",borderWidth:"1px"}}/>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" class="btn"style={{backgroundColor:"#10c0cc",color:"white"}}>Sign in</button>
         </form>
 
       </div>

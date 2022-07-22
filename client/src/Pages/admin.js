@@ -54,13 +54,13 @@ const Admin = () => {
     // setFiltEvents(currentPosts);
     console.log("currentPosts", currentPosts);
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    return <div>
+    return <div style={{backgroundColor:"#D4F1F4",height:"100vh"}}>
         {/* Navbar  */}
         <Head />
         {/* Options for adding / downloadingreport */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
 
-            <Button variant="primary" style={{ margin: "10px" }} onClick={() => navigate("/download", { state: { events: events,clubName:choice } })}>
+            <Button variant="primary" style={{margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={() => navigate("/download", { state: { events: events,clubName:choice } })}>
                 Download report
             </Button>
 
@@ -73,7 +73,7 @@ const Admin = () => {
                         <option value="maths">Maths</option>
                         <option value="photography">photography</option>
                     </Form.Select>
-                    <Button variant="primary" style={{ margin: "10px" }} onClick={handleAdmin}> Apply </Button>
+                    <Button variant="primary" style={{margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={handleAdmin}> Apply </Button>
                 </>
                 }
                 <Filter setEvents={setEvents} events={events} filterEvents={filterEvents} />
@@ -86,8 +86,13 @@ const Admin = () => {
         <div style={{ padding: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Eventtable events={currentPosts} getEvents={getEvents} club={choice} />
             {selected &&
-                <div style={{ width: "100%", display: "flex", justifyContent: "space-around", backgroundColor: "#f8f9fa", color: "black" }}>
+                <div style={{ width: "100%", display: "flex", justifyContent: "space-around", backgroundColor: "#003d55", color: "white" }}>
                     <h3>Select a club </h3>
+                </div>
+            }
+            {((!events.length)&&(!selected)) &&
+                <div style={{ width: "100%", display: "flex", justifyContent: "space-around", backgroundColor: "#003d55", color: "white" }}>
+                    <h5>There is no events to display</h5>
                 </div>
             }
             <Pagination

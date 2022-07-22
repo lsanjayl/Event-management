@@ -15,7 +15,7 @@ const Example = () => {
   return (
     <div >
       <Head />
-      <Button style={{ margin: "20px" }} onClick={handlePrint} >Download</Button>
+      <Button style={{ margin: "20px",backgroundColor:"#189AB4",color:"white"}} onClick={handlePrint} >Download</Button>
       <ComponentToPrint ref={componentRef} events={events} clubName={clubName}/>
     </div>
   );

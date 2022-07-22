@@ -211,7 +211,7 @@ function EventEdit({ id, choice, getEvents }) {
 
   return (
     <>
-      <Button variant="outline-primary" onClick={handleEdit} style={{ margin: "10px" }}>
+      <Button  onClick={handleEdit} style={{margin: "10px",color:"white",backgroundColor:"#42b4c0"}}>
         Edit
       </Button>
 
