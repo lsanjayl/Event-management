@@ -172,7 +172,11 @@ function EventEdit({ id, choice, getEvents }) {
     noofstud: "",
     url: "",
     remarks: "",
-    event: "Intercollege"
+    image: "",
+    report: "",
+    repRef: "",
+    imgRef: "",
+    event: "Intercollege",
   })
   const handleEdit = async () => {
     setModalShow(true);
@@ -194,17 +198,21 @@ function EventEdit({ id, choice, getEvents }) {
 
     setModalShow(false);
     setValues({
-      title: "",
-      theme: "",
-      venue: "",
-      mode: "",
-      date: "",
-      duration: "",
-      nooffaculty: "",
-      noofstud: "",
-      url: "",
-      remarks: "",
-      event: ""
+    title: "",
+    theme: "webinar",
+    venue: "",
+    mode: "Offline",
+    date: "",
+    duration: "",
+    nooffaculty: "",
+    noofstud: "",
+    url: "",
+    remarks: "",
+    image: "",
+    report: "",
+    repRef: "",
+    imgRef: "",
+    event: "Intercollege",
     })
   }
 

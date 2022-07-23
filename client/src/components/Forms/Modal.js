@@ -64,6 +64,9 @@ function EventModal({ choice, getEvents }) {
     );
   }
   const uploadrep = () => {
+    var text=report.name;
+    var substring = text.substring(text.length - 3);
+    if(substring==="pdf"){
     setreportUpload(prevUser => ({ ...prevUser, isUploading:true}));
     if (image == null)
       return;
@@ -106,6 +109,10 @@ function EventModal({ choice, getEvents }) {
         });
       }
     );
+    }
+    else{
+      alert("Please upload a pdf file");
+    }
   }
   const close = () => {
     setModalShow(false);

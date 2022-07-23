@@ -2,6 +2,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React from 'react';
 import { useState } from 'react';
+import {storage} from "../../services/auth"
+import {ref, deleteObject } from "firebase/storage";
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
@@ -22,16 +24,37 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="outline-danger" onClick={props.onHide}>No</Button>
-        <Button style={{backgroundColor:"#189AB4",color:"white"}} onClick={props.onSubmit}>Yes</Button>
+        <Button style={{ backgroundColor: "#189AB4", color: "white" }} onClick={props.onSubmit}>Yes</Button>
       </Modal.Footer>
     </Modal>
   );
 }
 
-function Deletepopup({ deleteHandler, id }) {
+function Deletepopup({ deleteHandler, id ,repRef,imgRef}) {
   const [modalShow, setModalShow] = useState(false);
   const onSubmit = async () => {
     await deleteHandler(id);
+
+    // Create a reference to the file to delete
+    const reportRef = ref(storage, 'images/'+repRef);
+
+    // Delete the file
+    await deleteObject(reportRef).then(() => {
+      console.log("File deleted successfully report"); 
+    }).catch((error) => {
+      console.log("erroe occured at report delete", error);
+    });
+
+    const imageRef = ref(storage, 'images/'+imgRef);
+
+
+    await deleteObject(imageRef).then(() => {
+      console.log("File deleted successfully image"); 
+    }).catch((error) => {
+      console.log("erroe occured at image delete", error);
+    });
+
+
     setModalShow(false);
   }
   return (

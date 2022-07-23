@@ -63,9 +63,10 @@ const Eventtable = ({ events, getEvents, club }) => {
                                 <a href={doc.image} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Images</a>
                             </td>
                             <td>
-                                <EventEdit id={doc.id} choice={club} getEvents={getEvents} />
+                                <EventEdit id={doc.id} choice={club} getEvents={getEvents} />'
+                                
                                 <br></br>
-                                <Deletepopup id={doc.id} deleteHandler={deleteHandler} />
+                                <Deletepopup id={doc.id} repRef={doc.repRef} imgRef={doc.imgRef}  deleteHandler={deleteHandler} />
                             </td>
                         </tr>
                     )

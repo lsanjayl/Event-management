@@ -54,7 +54,7 @@ const Admin = () => {
     // setFiltEvents(currentPosts);
     console.log("currentPosts", currentPosts);
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    return <div style={{backgroundColor:"#D4F1F4",height:"100vh"}}>
+    return <div style={{backgroundColor:"#D4F1F4",height:"100%",display: 'flex', justifyContent:'space-between',flexDirection:"column"}}>
         {/* Navbar  */}
         <Head />
         {/* Options for adding / downloadingreport */}
@@ -101,6 +101,7 @@ const Admin = () => {
                 paginate={paginate}
             />
         </div>
+        <p style={{margin:"6px",padding:"0px",textAlign:"right",fontSize:"1rem",color:"#003d55",fontWeight:"600"}}>Made with❤️️by <a href="https://github.com/lsanjayl" target="_blank" style={{color:"#10c0cc"}}>|sanjay|</a></p>
     </div>
 }
 
