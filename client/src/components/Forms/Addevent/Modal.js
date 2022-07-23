@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react"
-import EventDataService from "../../services/event.services"
-import { storage } from "../../services/auth.js"
+import EventDataService from "../../../services/event.services"
+import { storage } from "../../../services/auth.js"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import MyVerticallyCenteredModal from "./Modaljsx"
 import { Button } from "react-bootstrap"

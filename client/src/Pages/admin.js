@@ -1,10 +1,9 @@
 import React from "react"
 import { useEffect, useState } from "react"
-import { Button, Table, Form } from 'react-bootstrap';
+import { Button,Form} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import EventModal from "../components/Forms/Modal";
+import EventModal from "../components/Forms/Addevent/Modal";
 import EventDataService from "../services/event.services"
-import { useUserAuth } from "../services/authservice";
 import Head from "../components/Navbar/Navbar"
 import Eventtable from "../components/Table/Eventtable";
 import Filter from "../components/Forms/Filter"
@@ -84,7 +83,7 @@ const Admin = () => {
         {/* MainTable */}
 
         <div style={{ padding: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <Eventtable events={currentPosts} getEvents={getEvents} club={choice} />
+            <Eventtable events={currentPosts} getEvents={getEvents} choice={choice} />
             {selected &&
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-around", backgroundColor: "#003d55", color: "white" }}>
                     <h3>Select a club </h3>

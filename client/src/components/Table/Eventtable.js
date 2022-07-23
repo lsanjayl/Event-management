@@ -1,10 +1,11 @@
-import { FloatingLabel, Form, Button, Table } from "react-bootstrap"
+import { Table } from "react-bootstrap"
 import EventDataService from "../../services/event.services"
-import Deletepopup from "../Forms/Deletepopup";
+import Deletepopup from "../Forms/Popups/Deletepopup";
 import EventEdit from "../Forms/Edit";
-const Eventtable = ({ events, getEvents, club }) => {
+import Filesmanage from "../Forms/Imagedit/Filesmanage";
+const Eventtable = ({ events, getEvents, choice }) => {
     const deleteHandler = async (id) => {
-        await EventDataService.deleteEvent(id, club);
+        await EventDataService.deleteEvent(id, choice);
         getEvents();
     };
     return (
@@ -57,13 +58,14 @@ const Eventtable = ({ events, getEvents, club }) => {
                                 <label>Downloadable files</label>
                                 <br></br>
                                 <br></br>
-                                <a href={doc.report} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Report</a>
+                                <Filesmanage id={doc.id} choice={choice} getEvents={getEvents}/>
+                                {/* <a href={doc.report} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Report</a>
                                 <br></br>
                                 <br></br>
-                                <a href={doc.image} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Images</a>
+                                <a href={doc.image} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Images</a> */}
                             </td>
                             <td>
-                                <EventEdit id={doc.id} choice={club} getEvents={getEvents} />'
+                                <EventEdit id={doc.id} choice={choice} getEvents={getEvents} />'
                                 
                                 <br></br>
                                 <Deletepopup id={doc.id} repRef={doc.repRef} imgRef={doc.imgRef}  deleteHandler={deleteHandler} />

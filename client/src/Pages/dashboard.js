@@ -2,9 +2,8 @@ import React from "react"
 import { useEffect, useState } from "react"
 import Head from "../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
-import EventModal from "../components/Forms/Modal";
+import EventModal from "../components/Forms/Addevent/Modal";
 import EventDataService from "../services/event.services"
-import { useUserAuth } from "../services/authservice";
 import { Button } from "react-bootstrap"
 import Eventtable from "../components/Table/Eventtable";
 import Filter from "../components/Forms/Filter"
@@ -15,7 +14,6 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
   const navigate = useNavigate();
-  const { user } = useUserAuth()
 
   //=========club name display=============/
   const club = (localStorage.getItem("email")).slice(3, -17);
@@ -58,7 +56,7 @@ const Dashboard = () => {
       </div>
     </div>
     <div style={{ padding: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <Eventtable events={currentPosts} getEvents={getEvents} club={club} />
+      <Eventtable events={currentPosts} getEvents={getEvents} choice={club} />
       {!events.length &&
         <div style={{ width: "100%", display: "flex", justifyContent: "space-around", backgroundColor: "#003d55", color: "white" }}>
           <h5>There is no events to display</h5>
