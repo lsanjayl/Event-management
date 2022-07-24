@@ -19,6 +19,8 @@ function EventModal({ choice, getEvents }) {
   });
   const clubName = choice
   const upload = () => {
+    var text=report.name;
+    if(text){
     setimageUpload(prevUser => ({ ...prevUser, isUploading:true}));
     if (image == null)
       return;
@@ -62,6 +64,7 @@ function EventModal({ choice, getEvents }) {
 
       }
     );
+    }
   }
   const uploadrep = () => {
     var text=report.name;
