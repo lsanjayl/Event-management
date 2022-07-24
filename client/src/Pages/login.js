@@ -49,7 +49,7 @@ const Login = () => {
   }
 
   return (
-    <div style={{backgroundColor:"#D4F1F4",height:"100vh"}}>
+    <div style={{backgroundColor:"#D4F1F4",height:"100vh",display: 'flex', justifyContent:'space-between',flexDirection:"column"}}>
       <Navbar  variant="dark" style={{backgroundColor:"#003d55"}}>
         <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
           <Navbar.Brand href="#home" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -59,9 +59,9 @@ const Login = () => {
               className="d-inline-block align-top"
               alt="logo"
             />
-            <Navbar.Brand href="/">Event manager</Navbar.Brand>
+            <Navbar.Brand href="/" style={{fontWeight:"400"}}>Event manager</Navbar.Brand>
           </Navbar.Brand>
-          <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
+          <Navbar.Brand href="/" style={{fontWeight:"400"}}> Clubs and Cells</Navbar.Brand>
         </Container>
       </Navbar>
       <div style={{ display: 'flex', justifyContent:'center', alignItems:"center"}}>
@@ -72,7 +72,7 @@ const Login = () => {
                         alt="logo"
                     />
         <hr style={{width: "3px",height:"200px",display:"inline-block",color:"#6d6d6d"}}></hr>
-        <form style={{ width: 400, height: 600, display: 'flex', flexDirection: 'column', justifyContent: 'center',margin:"20px" }} onSubmit={handleSubmit}>
+        <form style={{ width: 400, display: 'flex', flexDirection: 'column', justifyContent: 'center',margin:"20px" }} onSubmit={handleSubmit}>
           <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label" style={{color:"#6d6d6d"}}>Email</label>
             <div class="col-sm-10">
@@ -87,8 +87,8 @@ const Login = () => {
           </div>
           <button type="submit" class="btn"style={{backgroundColor:"#10c0cc",color:"white"}}>Sign in</button>
         </form>
-
       </div>
+      <p style={{margin:"6px",padding:"0px",textAlign:"right",fontSize:"1rem",color:"#003d55",fontWeight:"600"}}>Made with❤️️by <a href="https://github.com/lsanjayl" target="_blank"style={{color:"#10c0cc"}}>|sanjay|</a></p>
     </div>
   )
 }
