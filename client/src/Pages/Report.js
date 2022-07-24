@@ -13,10 +13,14 @@ const Example = () => {
     content: () => componentRef.current,
   });
   return (
-    <div >
+    <div style={{backgroundColor:"#D4F1F4",height:"100%",display: 'flex', justifyContent:'space-between',flexDirection:"column"}}>
       <Head />
+      <div>
       <Button style={{ margin: "20px",backgroundColor:"#189AB4",color:"white"}} onClick={handlePrint} >Download</Button>
       <ComponentToPrint ref={componentRef} events={events} clubName={clubName}/>
+      </div>
+      <p style={{margin:"6px",padding:"0px",textAlign:"right",fontSize:"1rem",color:"#003d55",fontWeight:"600"}}>Made with❤️️by <a href="https://github.com/lsanjayl"target="_blank" style={{color:"#10c0cc"}}>|sanjay|</a></p>
+
     </div>
   );
 };

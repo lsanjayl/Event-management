@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react"
-import EventDataService from "../../services/event.services"
-import { storage } from "../../services/auth.js"
+import EventDataService from "../../../services/event.services"
+import { storage } from "../../../services/auth.js"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import MyVerticallyCenteredModal from "./Modaljsx"
 import { Button } from "react-bootstrap"
@@ -64,6 +64,9 @@ function EventModal({ choice, getEvents }) {
     );
   }
   const uploadrep = () => {
+    var text=report.name;
+    var substring = text.substring(text.length - 3);
+    if(substring==="pdf"){
     setreportUpload(prevUser => ({ ...prevUser, isUploading:true}));
     if (image == null)
       return;
@@ -106,6 +109,10 @@ function EventModal({ choice, getEvents }) {
         });
       }
     );
+    }
+    else{
+      alert("Please upload a pdf file");
+    }
   }
   const close = () => {
     setModalShow(false);

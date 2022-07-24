@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import EventDataService from "../../services/event.services"
 import { Button, Modal, FloatingLabel, Form, Container, Row, Col } from "react-bootstrap"
-import Close from "./Close"
+import Close from "./Popups/Close"
 function MyVerticallyCenteredModal(props) {
 
   const handleChange = e => {
@@ -149,7 +149,7 @@ function MyVerticallyCenteredModal(props) {
 
       <Modal.Footer>
         <Close hide={props.onHide} content={"Are sure you want to close if changes made may not be stored ?"} />
-        <Button onClick={props.onSubmit}>Update</Button>
+        <Button onClick={props.onSubmit} style={{backgroundColor:"#189AB4",color:"white"}}>Update</Button>
       </Modal.Footer>
 
 
@@ -172,7 +172,11 @@ function EventEdit({ id, choice, getEvents }) {
     noofstud: "",
     url: "",
     remarks: "",
-    event: "Intercollege"
+    image: "",
+    report: "",
+    repRef: "",
+    imgRef: "",
+    event: "Intercollege",
   })
   const handleEdit = async () => {
     setModalShow(true);
@@ -194,24 +198,28 @@ function EventEdit({ id, choice, getEvents }) {
 
     setModalShow(false);
     setValues({
-      title: "",
-      theme: "",
-      venue: "",
-      mode: "",
-      date: "",
-      duration: "",
-      nooffaculty: "",
-      noofstud: "",
-      url: "",
-      remarks: "",
-      event: ""
+    title: "",
+    theme: "webinar",
+    venue: "",
+    mode: "Offline",
+    date: "",
+    duration: "",
+    nooffaculty: "",
+    noofstud: "",
+    url: "",
+    remarks: "",
+    image: "",
+    report: "",
+    repRef: "",
+    imgRef: "",
+    event: "Intercollege",
     })
   }
 
 
   return (
     <>
-      <Button  onClick={handleEdit} style={{margin: "10px",color:"white",backgroundColor:"#42b4c0"}}>
+      <Button  onClick={handleEdit} style={{margin: "10px",color:"white",backgroundColor:"#189AB4"}}>
         Edit
       </Button>
 
