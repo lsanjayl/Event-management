@@ -59,54 +59,56 @@ function Updateimage({ imgRef, id, choice, getEvent }) {
     const [modalShow, setModalShow] = useState(false);
     const [image, setImage] = useState("");
     const [imageUpload, setimageUpload] = useState({
-      isUploading: false,
-      state: false
+        isUploading: false,
+        state: false
     });
     const uploadimg = async () => {
-
-            await deleteImage();
-            setimageUpload(prevUser => ({ ...prevUser, isUploading: true }));
-            if (image == null)
-                return;
-            const metadata = {
-                contentType: 'image/jpg'
-            };
-            const storageRef = ref(storage, 'images/' + image.name);
-            const uploadTask = uploadBytesResumable(storageRef, image, metadata);
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
-                    }
-                },
-                (error) => {
-                    switch (error.code) {
-                        case 'storage/unauthorized':
-                            break;
-                        case 'storage/canceled':
-                            break;
-                        case 'storage/unknown':
-                            break;
-                    }
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log(downloadURL)
-                        setValues(prevUser => ({ ...prevUser, image: downloadURL, imgRef: image.name }));
-                        // console.log(values)
-                        setimageUpload(prevUser => ({ ...prevUser, isUploading: false }));
-                        setimageUpload(prevUser => ({ ...prevUser, state: true }));
-                    });
+        var text =image.name;
+        if(text){
+        await deleteImage();
+        setimageUpload(prevUser => ({ ...prevUser, isUploading: true }));
+        if (image == null)
+            return;
+        const metadata = {
+            contentType: 'image/jpg'
+        };
+        const storageRef = ref(storage, 'images/' + image.name);
+        const uploadTask = uploadBytesResumable(storageRef, image, metadata);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        console.log('Upload is running');
+                        break;
                 }
-            );
+            },
+            (error) => {
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        break;
+                    case 'storage/canceled':
+                        break;
+                    case 'storage/unknown':
+                        break;
+                }
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log(downloadURL)
+                    setValues(prevUser => ({ ...prevUser, image: downloadURL, imgRef: image.name }));
+                    // console.log(values)
+                    setimageUpload(prevUser => ({ ...prevUser, isUploading: false }));
+                    setimageUpload(prevUser => ({ ...prevUser, state: true }));
+                });
+            }
+        );
+        }
     }
     const deleteImage = async () => {
         // Delete the file
