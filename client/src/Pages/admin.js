@@ -68,9 +68,34 @@ const Admin = () => {
                 {club === "admin" && <>
                     <Form.Select variant="primary" value={choice} onChange={(e) => setChoice(e.target.value)} style={{ width: "150px" }}>
                         <option value="">Choose</option>
+                        <option value="automobile">Automobile</option>
+                        <option value="codeclub">Codeclub</option>
+                        <option value="cyberclub">Cyberclub</option>
+                        <option value="dms">Disaster Management</option>
+                        <option value="ecoswacchbharat">Ecoswacchbharat</option>
+                        <option value="ensavclub">Ensavclub</option>
+                        <option value="englishliterature">Englishliterature</option>
+                        <option value="foreignlanguage">Foreignlanguage</option>
+                        <option value="finearts">Finearts</option>
+                        <option value="healthandyoga">Healthandyoga</option>
                         <option value="mapps" >Mapps</option>
                         <option value="maths">Maths</option>
-                        <option value="photography">photography</option>
+                        <option value="photographyclub">photography</option>
+                        <option value="robotics">robotics</option>
+                        <option value="rotaract">Rotaract</option>
+                        <option value="science">science</option>
+                        <option value="skilldevelopment">Skilldevelopment</option>
+                        <option value="saimuthamizhmandram">Saimuthamizhmandram</option>
+                        <option value="youngindiansclub">Youngindiansclub</option>
+                        <option value="redribbon">Redribbon</option>
+                        <option value="gamedevelopment">Gamedevelopment</option>
+                        <option value="edcell">Edcell</option>
+                        <option value="highereducation">Highereducation</option>
+                        <option value="ncc">Ncc</option>
+                        <option value="nss">Nss</option>
+                        <option value="woww">woww</option>
+                        <option value="yrc">yrc</option>
+                        <option value="ipr">Ipr</option>
                     </Form.Select>
                     <Button variant="primary" style={{margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={handleAdmin}> Apply </Button>
                 </>
