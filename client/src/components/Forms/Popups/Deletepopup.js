@@ -10,7 +10,7 @@ function MyVerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header >
         <Modal.Title id="contained-modal-title-vcenter">
           Delete event
         </Modal.Title>

@@ -32,16 +32,15 @@ const Previewtable = ({ events }) => {
                                 <td>No.of.faculties participated:{doc.nooffaculty}</td>
                                 <br></br>
                                 <td>URL:{doc.url}</td>
-                            </td>
-                            <td>
-                                <td>Remarks:{doc.remarks}</td>
                                 <br></br>
                                 <td>Venue:{doc.venue}</td>
                                 <br></br>
                                 <td>Date:{doc.date}</td>
                                 <td>Mode:{doc.mode}</td>
-                                <br></br>
+                            </td>
+                            <td>
                                 <td>Remarks:{doc.remarks}</td>
+                                
                             </td>
                         </tr>
 

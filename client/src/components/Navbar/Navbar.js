@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../Images/logo.png"
 const Head = () => {
     const { logOut, user } = useUserAuth()
-    const club= (localStorage.getItem("email")).slice(3, -17);
+    const club= (localStorage.getItem("email")).slice(0, -17);
     const clubName = club[0].toUpperCase() + club.substring(1);
     const navigate = useNavigate();
     let clubTag = "club"

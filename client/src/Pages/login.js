@@ -14,7 +14,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const user= localStorage.getItem("email");
   if(user){
-    if(((user).slice(3, -17))==="admin"){
+    if(((user).slice(0, -17))==="admin"){
       navigate("/admin");
     }
     else{
@@ -32,7 +32,7 @@ const Login = () => {
       await login(email, password);
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
-      const club = email.slice(3, -17)
+      const club = email.slice(0, -17)
       if (club === "admin") {
         navigate("/admin")
       } else {
