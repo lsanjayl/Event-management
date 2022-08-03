@@ -27,7 +27,7 @@ function MyVerticallyCenteredModal(props) {
           <Updatereport repRef={props.repRef} choice={props.choice} id={props.id} getEvent={props.getEvent} />
         </div>
         <hr />
-        <h5>Uploaded image</h5>
+        <h5>Uploaded collage/image</h5>
         <Imagecard imgRef={props.imgRef} image={props.image} />
         <br></br>
         <div style={{ display: "flex" }}>

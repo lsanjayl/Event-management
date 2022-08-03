@@ -16,7 +16,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   //=========club name display=============/
-  const club = (localStorage.getItem("email")).slice(3, -17);
+  const club = (localStorage.getItem("email")).slice(0, -17);
   if (club === "admin") {
     navigate("/admin")
   }

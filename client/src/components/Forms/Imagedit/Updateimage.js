@@ -12,9 +12,9 @@ function MyVerticallyCenteredModal(props) {
             size="lg"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Report updation
+                    Image updation
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body >
