@@ -4,12 +4,13 @@ import { getAuth } from "firebase/auth"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCW4b9gvHAKEgrzFCWvSQ7RDDS_OvYxyHI",
-  authDomain: "event-manager-46daf.firebaseapp.com",
-  projectId: "event-manager-46daf",
-  storageBucket: "event-manager-46daf.appspot.com",
-  messagingSenderId: "610355809655",
-  appId: "1:610355809655:web:d5358362c0f7a904cce572"
+  apiKey: "AIzaSyCwkSOb_x6DD6OzvjzrD8uJpeXuz25h1G0",
+  authDomain: "clubsandcells-9e51f.firebaseapp.com",
+  projectId: "clubsandcells-9e51f",
+  storageBucket: "clubsandcells-9e51f.appspot.com",
+  messagingSenderId: "907913581849",
+  appId: "1:907913581849:web:7f2a9cb64a1aef94882188",
+  measurementId: "G-5NLKE4BVPG"
 };
 
 const app = initializeApp(firebaseConfig);
