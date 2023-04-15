@@ -55,6 +55,7 @@ function Updateimage({ imgRef, id, choice, getEvent }) {
         repRef: "",
         imgRef: "",
         event: "Intercollege",
+        participants:[]
     })
     const [modalShow, setModalShow] = useState(false);
     const [image, setImage] = useState("");

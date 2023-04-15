@@ -135,6 +135,7 @@ function EventModal({ choice, getEvents }) {
       repRef: "",
       imgRef: "",
       event: "Intercollege",
+      participants:[]
 
     })
     setimageUpload({
@@ -175,6 +176,7 @@ function EventModal({ choice, getEvents }) {
     repRef: "",
     imgRef: "",
     event: "Intercollege",
+    participants:[]
 
   })
 

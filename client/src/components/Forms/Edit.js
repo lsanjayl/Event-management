@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import EventDataService from "../../services/event.services"
 import { Button, Modal, FloatingLabel, Form, Container, Row, Col } from "react-bootstrap"
-import Close from "./Popups/Close"
+import Close from "../Popups/Close"
 function MyVerticallyCenteredModal(props) {
 
   const handleChange = e => {
@@ -139,7 +139,7 @@ function MyVerticallyCenteredModal(props) {
         </Form.Group>
         </Col>
         </Row> */}
-
+//how to 
 
 
         </Container>
@@ -160,6 +160,7 @@ function MyVerticallyCenteredModal(props) {
 function EventEdit({ id, choice, getEvents }) {
 
 
+
   const [modalShow, setModalShow] = useState(false);
   const [values, setValues] = useState({
     title: "",
@@ -177,12 +178,12 @@ function EventEdit({ id, choice, getEvents }) {
     repRef: "",
     imgRef: "",
     event: "Intercollege",
+    participants:[],
   })
   const handleEdit = async () => {
     setModalShow(true);
     const docSnap = await EventDataService.getEvent(id, choice);
     setValues(docSnap.data());
-
   }
 
 
@@ -213,6 +214,7 @@ function EventEdit({ id, choice, getEvents }) {
     repRef: "",
     imgRef: "",
     event: "Intercollege",
+    participants:[],
     })
   }
 

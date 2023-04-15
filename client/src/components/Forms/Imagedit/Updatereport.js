@@ -55,6 +55,7 @@ function Updatereport({ repRef,id,choice,getEvent }) {
         repRef: "",
         imgRef: "",
         event: "Intercollege",
+        participants:[]
     })
     const [modalShow, setModalShow] = useState(false);
     const [report, setReport] = useState("");

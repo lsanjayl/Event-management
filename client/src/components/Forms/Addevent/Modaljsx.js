@@ -1,5 +1,5 @@
 import { Button, Modal, FloatingLabel, Form, Container, Row, Col, FormLabel } from "react-bootstrap"
-import Close from "../Popups/Close";
+import Close from "../../Popups/Close";
 import Spinner from 'react-bootstrap/Spinner';
 function MyVerticallyCenteredModal(props) {
   const handleChange = e => {
