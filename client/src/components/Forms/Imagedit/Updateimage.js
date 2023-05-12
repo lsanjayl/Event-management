@@ -40,7 +40,9 @@ function Updateimage({ imgRef, id, choice, getEvent }) {
 
     }
     const [values, setValues] = useState({
+        club:choice,
         title: "",
+        desc:"",
         theme: "webinar",
         venue: "",
         mode: "Offline",
@@ -55,6 +57,7 @@ function Updateimage({ imgRef, id, choice, getEvent }) {
         repRef: "",
         imgRef: "",
         event: "Intercollege",
+        participants:[],
     })
     const [modalShow, setModalShow] = useState(false);
     const [image, setImage] = useState("");

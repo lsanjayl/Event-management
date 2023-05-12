@@ -1,8 +1,9 @@
 import { Table } from "react-bootstrap"
 import EventDataService from "../../services/event.services"
-import Deletepopup from "../Forms/Popups/Deletepopup";
+import Deletepopup from "../Popups/Deletepopup";
 import EventEdit from "../Forms/Edit";
 import Filesmanage from "../Forms/Imagedit/Filesmanage";
+import Partcipants_modal from "../Participants_list/partcipants_modal";
 const Eventtable = ({ events, getEvents, choice }) => {
     const deleteHandler = async (id) => {
         await EventDataService.deleteEvent(id, choice);
@@ -30,6 +31,8 @@ const Eventtable = ({ events, getEvents, choice }) => {
                             <td>
                                 <td>Title:{doc.title}</td>
                                 <br></br>
+                                <td>Description:{doc.desc}</td>
+                                <br></br>
                                 <td>Theme:{doc.theme}</td>
                                 <br></br>
                                 <td>Duration:{doc.duration}</td>
@@ -43,7 +46,7 @@ const Eventtable = ({ events, getEvents, choice }) => {
                                 <td>No.of.faculties participated:{doc.nooffaculty}</td>
                                 <br></br>
                                 <td>URL:{doc.url}</td>
-
+                                <Partcipants_modal id={doc.id} choice={choice} getEvents={getEvents} events={events[index]} />
                             </td>
                             <td>
                                 <td>Venue:{doc.venue}</td>
@@ -65,7 +68,7 @@ const Eventtable = ({ events, getEvents, choice }) => {
                                 <a href={doc.image} target="_blank" style={{ textDecoration: "none", color: "white", background: "#189AB4", borderRadius: "4px", margin: "10px", padding: "5px 7px" }}>Images</a> */}
                             </td>
                             <td>
-                                <EventEdit id={doc.id} choice={choice} getEvents={getEvents} />'
+                                <EventEdit id={doc.id} choice={choice} getEvents={getEvents} />
                                 
                                 <br></br>
                                 <Deletepopup id={doc.id} repRef={doc.repRef} imgRef={doc.imgRef}  deleteHandler={deleteHandler} />

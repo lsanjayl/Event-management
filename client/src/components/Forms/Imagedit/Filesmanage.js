@@ -60,6 +60,7 @@ function Filesmanage({ id, choice, getEvents }) {
     repRef: "",
     imgRef: "",
     event: "Intercollege",
+    participants:[]
   })
   const handleEdit = async () => {
     setModalShow(true);

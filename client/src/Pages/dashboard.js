@@ -29,7 +29,6 @@ const Dashboard = () => {
     const data = await EventDataService.getAllEvent(club);
     setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setFiltEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    console.log("Firebase events fetch")
   };
 
   const filterEvents = async (theme, event, mode) => {
@@ -40,14 +39,14 @@ const Dashboard = () => {
   }
   //=============Pagination================/
   const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;console.log(events);
   const currentPosts = events.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return <div style={{ backgroundColor: "#D4F1F4", height: "100%", display: 'flex', justifyContent: 'space-between', flexDirection: "column" }}>
     <Head />
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
-      <Button variant="primary" style={{ margin: "10px", backgroundColor: "#189AB4", color: "white" }} onClick={() => navigate("/download", { state: { events: events, clubName: clubName } })}>
+      <Button variant="primary" style={{ margin: "10px", backgroundColor: "#189AB4", color: "white" }} onClick={() =>navigate("/download", { state: { events: events, clubName: clubName } })}>
         Download report
       </Button>
       <div style={{ display: "flex", alignItems: "center" }}>
