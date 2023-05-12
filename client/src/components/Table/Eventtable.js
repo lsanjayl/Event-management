@@ -31,6 +31,8 @@ const Eventtable = ({ events, getEvents, choice }) => {
                             <td>
                                 <td>Title:{doc.title}</td>
                                 <br></br>
+                                <td>Description:{doc.desc}</td>
+                                <br></br>
                                 <td>Theme:{doc.theme}</td>
                                 <br></br>
                                 <td>Duration:{doc.duration}</td>

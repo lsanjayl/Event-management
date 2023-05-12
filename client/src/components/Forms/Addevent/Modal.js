@@ -19,7 +19,9 @@ function EventModal({ choice, getEvents }) {
   });
   const clubName = choice
   const upload = () => {
-    var text=report.name;
+    
+    var text=image.name;
+    console.log(text)
     if(text){
     setimageUpload(prevUser => ({ ...prevUser, isUploading:true}));
     if (image == null)
@@ -120,7 +122,9 @@ function EventModal({ choice, getEvents }) {
   const close = () => {
     setModalShow(false);
     setValues({
+      club:choice,
       title: "",
+      desc:"",
       theme: "webinar",
       venue: "",
       mode: "Offline",
@@ -161,7 +165,9 @@ function EventModal({ choice, getEvents }) {
   }
 
   const [values, setValues] = useState({
+    club:choice,
     title: "",
+    desc:"",
     theme: "webinar",
     venue: "",
     mode: "Offline",

@@ -36,16 +36,15 @@ function MyVerticallyCenteredModal(props) {
             </Col>
 
             <Col>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <FloatingLabel controlId="floatingInput" label="Theme" className="mb-3">
-                  <Form.Select aria-label="Floating label select example" value={props.values.theme} name="theme" onChange={handleChange}>
-                    <option value="webinar">Webinar/Handson</option>
-                    <option value="hackathon">Hackathon</option>
-                    <option value="awarnessprograms">Awarness programs</option>
-                  </Form.Select>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <FloatingLabel controlId="floatingInput" label="Description" className="mb-3">
+                  <Form.Control as="textarea" rows={3} placeholder="Description" value={props.values.desc} name="desc" onChange={handleChange} />
                 </FloatingLabel>
               </Form.Group>
             </Col>
+
+
+
 
           </Row>
           <Row>
@@ -119,7 +118,19 @@ function MyVerticallyCenteredModal(props) {
                 </FloatingLabel>
               </Form.Group>
             </Col>
-            <Col></Col>
+            <Col>
+            <Col>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <FloatingLabel controlId="floatingInput" label="Theme" className="mb-3">
+                  <Form.Select aria-label="Floating label select example" value={props.values.theme} name="theme" onChange={handleChange}>
+                    <option value="webinar">Webinar/Handson</option>
+                    <option value="hackathon">Hackathon</option>
+                    <option value="awarnessprograms">Awarness programs</option>
+                  </Form.Select>
+                </FloatingLabel>
+              </Form.Group>
+            </Col>
+            </Col>
           </Row>
 
           {/* <Row>
@@ -163,7 +174,9 @@ function EventEdit({ id, choice, getEvents }) {
 
   const [modalShow, setModalShow] = useState(false);
   const [values, setValues] = useState({
+    club:choice,
     title: "",
+    desc:"",
     theme: "webinar",
     venue: "",
     mode: "Offline",
@@ -199,7 +212,9 @@ function EventEdit({ id, choice, getEvents }) {
 
     setModalShow(false);
     setValues({
+    club:choice,
     title: "",
+    desc:"",
     theme: "webinar",
     venue: "",
     mode: "Offline",
