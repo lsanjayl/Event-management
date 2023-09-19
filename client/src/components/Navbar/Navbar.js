@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../Images/logo.png"
 const Head = () => {
     const { logOut, user } = useUserAuth()
-    const club= (localStorage.getItem("email")).slice(0, -17);
+    const club= "mapps";
     const clubName = club[0].toUpperCase() + club.substring(1);
     const navigate = useNavigate();
     let clubTag = "club"
     const handleLogout = async () => {
         try {
-            await logOut();
-            localStorage.setItem("email","");
-            localStorage.setItem("password","");
-            navigate("/login");
+            // await logOut();
+            // localStorage.setItem("email","");
+            // localStorage.setItem("password","");
+            navigate("/admin");
         }
         catch (e) {
             console.log(e.message);
@@ -29,7 +29,7 @@ const Head = () => {
               className="d-inline-block align-top"
               alt="logo"
             />
-            <Navbar.Brand href="/">Event manager</Navbar.Brand>
+            <Navbar.Brand href="/">Demo Event manager</Navbar.Brand>
           </Navbar.Brand>
                 <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
 
@@ -37,7 +37,7 @@ const Head = () => {
                     <Navbar.Brand >{clubName}</Navbar.Brand>
 
                     <Nav.Link> <Button variant="outline-light" onClick={handleLogout}>
-                        Logout
+                        Admin
                     </Button>
                     </Nav.Link>
                 </Nav>

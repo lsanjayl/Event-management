@@ -13,16 +13,14 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/"
          element={
-        <ProtectedRoute>
           <Dashboard/>
-        </ProtectedRoute> 
         }
         />
         <Route path="/admin"
          element={
-        <ProtectedRoute>
+
           <Admin />
-        </ProtectedRoute> 
+
         }
         />
         <Route path="/download" element={<ProtectedRoute><Example/></ProtectedRoute>}/>

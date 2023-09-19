@@ -17,7 +17,7 @@ const Admin = () => {
     const [postsPerPage] = useState(7);
     const navigate = useNavigate();
     //=========club name display=============/
-    const club = (localStorage.getItem("email")).slice(0, -17);
+    const club = "admin";
     if (club !== "admin") {
         setChoice(club);
     }
