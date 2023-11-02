@@ -31,7 +31,7 @@ const Head = () => {
             />
             <Navbar.Brand href="/">Demo Event manager</Navbar.Brand>
           </Navbar.Brand>
-                <Navbar.Brand href="/"> Clubs and Cells</Navbar.Brand>
+                <Navbar.Brand href="/">ClowDawn</Navbar.Brand>
 
                 <Nav style={{ display: 'flex', alignItems: 'center' }}>
                     <Navbar.Brand >{clubName}</Navbar.Brand>
