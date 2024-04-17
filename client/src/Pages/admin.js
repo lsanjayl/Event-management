@@ -58,12 +58,17 @@ const Admin = () => {
         <Head />
         {/* Options for adding / downloadingreport */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: "100%" }}>
-
+            <div>
             <Button variant="primary" style={{margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={() => navigate("/download", { state: { events: events,clubName:choice } })}>
                 Download report
             </Button>
-
-
+            <Button variant="primary" style={{margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={() => navigate("/clubmanagement")}>
+                Club management
+            </Button>
+            <Button variant="primary" style={{margin: "10px",backgroundColor:"#189AB4",color:"white"}} onClick={() => navigate("/annoumcement")}>
+                Announcement
+            </Button>
+            </div>
             <div style={{ display: "flex", alignItems: "center" }}>
                 {club === "admin" && <>
                     <Form.Select variant="primary" value={choice} onChange={(e) => setChoice(e.target.value)} style={{ width: "150px" }}>

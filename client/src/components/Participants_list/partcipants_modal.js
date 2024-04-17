@@ -46,7 +46,7 @@ function MyVerticallyCenteredModal(props) {
                     return (
                         <tr key={doc.id}>
                           <td>
-                            {doc.id+1}
+                            {index+1}
                           </td>
                             <td>
                                 {doc.name}
@@ -91,7 +91,7 @@ function MyVerticallyCenteredModal(props) {
 function Partcipants_modal({id,choice,getEvents,events}) {
   const [modalShow, setModalShow] = useState(false);
   const [values, setValues] = useState(events)
-
+  console.log(values,"values")
   const handleEdit = async () => {
     setModalShow(true);
   }

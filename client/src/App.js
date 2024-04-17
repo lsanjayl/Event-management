@@ -2,6 +2,7 @@
 import Dashboard from "./Pages/dashboard"
 import Example from "./Pages/Report"
 import Admin from "./Pages/admin"
+import Clubmanagement from "./Pages/clubmanagement";
 import { Route, Routes } from 'react-router-dom'
 import Login from "./Pages/login"
 import ProtectedRoute from './services/ProtectedRoute'
@@ -25,6 +26,14 @@ function App() {
         </ProtectedRoute> 
         }
         />
+        <Route path="/clubmanagement"
+         element={
+        <ProtectedRoute>
+          <Clubmanagement />
+        </ProtectedRoute> 
+        }
+        />
+        
         <Route path="/download" element={<ProtectedRoute><Example/></ProtectedRoute>}/>
       </Routes>
       </UserAuthContextProvider>
